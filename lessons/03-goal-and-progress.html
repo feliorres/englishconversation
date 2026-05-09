@@ -283,11 +283,100 @@
     min-width: 60px;
     text-align: center;
   }
+  /* ── Mobile Responsiveness ── */
+  @media (max-width: 768px) {
+    .slide {
+      padding: 40px 6% !important;
+    }
+    .label {
+      top: 16px;
+      left: 16px;
+      font-size: 10px;
+    }
+    .slide-num {
+      bottom: 16px;
+      right: 16px;
+      font-size: 12px;
+    }
+    h1 {
+      font-size: 40px !important;
+      line-height: 1.1 !important;
+      margin-bottom: 12px !important;
+    }
+    h2 {
+      font-size: 32px !important;
+      line-height: 1.2 !important;
+      margin-bottom: 12px !important;
+    }
+    p, li {
+      font-size: 18px !important;
+      line-height: 1.4 !important;
+    }
+    blockquote {
+      font-size: 20px !important;
+    }
+    .formula {
+      font-size: 28px !important;
+    }
+    .formula span {
+      font-size: 16px !important;
+    }
+    img {
+      max-width: 90% !important;
+      height: auto !important;
+      padding: 10px !important;
+      border-width: 2px !important;
+    }
+    .progress-percentage {
+      font-size: 28px !important;
+    }
+    .progress-fraction {
+      font-size: 14px !important;
+    }
+    .nav {
+      bottom: 10px;
+      gap: 10px;
+    }
+    .nav-btn {
+      padding: 8px 12px;
+      font-size: 9px;
+    }
+    .nav-counter {
+      min-width: 50px;
+      font-size: 10px;
+    }
+    table {
+      font-size: 12px !important;
+    }
+    th, td {
+      padding: 6px 4px !important;
+    }
+    tr:last-child td {
+      font-size: 14px !important;
+      padding: 10px 4px !important;
+    }
+  }
 </style>
 </head>
 <body>
 
 <div class="deck" id="deck">
+
+  <!-- SLIDE 0: QR Code -->
+  <div class="slide active" id="s0">
+    <div class="label">English Conversation · Lesson 03</div>
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:20px;">
+      <h2 style="font-size: 56px; margin-bottom: 20px;">Escaneie para acompanhar</h2>
+      <img src="images/qr_lesson3.png" alt="QR Code Lesson 3" style="width: 500px; height: 500px; border: 4px solid var(--ink); border-radius: 12px; padding: 20px; background: white;">
+      <p style="font-family: var(--sans); font-size: 28px; color: var(--ink-soft); margin-top: 10px;">Acesse os slides no seu celular</p>
+    </div>
+    <div class="slide-num">QR</div>
+  </div>
+
+  <!-- BLANK -->
+  <div class="slide slide-blank" id="sb0">
+    <div class="slide-num">—</div>
+  </div>
 
   <!-- SLIDE 1: Title -->
   <div class="slide active" id="s1">
@@ -874,12 +963,13 @@
 
 <div class="nav">
   <button class="nav-btn" id="prev" onclick="move(-1)" disabled>← Anterior</button>
-  <div class="nav-counter" id="counter">1 / 54</div>
+  <div class="nav-counter" id="counter">1 / 56</div>
   <button class="nav-btn" id="next" onclick="move(1)">Próximo →</button>
 </div>
 
 <script>
   const order = [
+    's0', 'sb0',
     's1', 'sb1',
     's2', 'sb2',
     's3', 'sb3',
