@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English Battleship</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #FAFAFA; /* Off-white */
+            --text-color: #333333; /* Dark grey */
+            --primary-color: #228B22; /* Forest green */
+            --primary-hover: #1b6e1b;
+            --miss-color: #e0e0e0; /* Light grey */
+            --miss-text: #9e9e9e;
+            --cell-border: #eeeeee;
+            --header-bg: #ffffff;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --radius: 8px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        p.subtitle {
+            color: #666;
+            font-size: 1rem;
+        }
+
+        /* Banner */
+        #banner {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--header-bg);
+            border-left: 4px solid var(--primary-color);
+            padding: 1rem 2rem;
+            border-radius: var(--radius);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            font-size: 1.25rem;
+            font-weight: 500;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            text-align: center;
+            max-width: 90%;
+        }
+
+        #banner.show {
+            opacity: 1;
+            visibility: visible;
+            top: 40px;
+        }
+
+        .game-container {
+            background-color: var(--header-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow-x: auto;
+            max-width: 100%;
+        }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: auto repeat(5, 1fr);
+            gap: 8px;
+            margin-bottom: 2rem;
+        }
+
+        /* Cells */
+        .cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--radius);
+            padding: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .header-cell {
+            background-color: var(--bg-color);
+            font-weight: 500;
+            color: var(--text-color);
+            border: 1px solid var(--cell-border);
+        }
+
+        .corner-cell {
+            background: transparent;
+            border: none;
+        }
+
+        .y-header {
+            text-align: right;
+            padding-right: 1.5rem;
+            justify-content: flex-end;
+        }
+
+        .x-header {
+            justify-content: center;
+        }
+
+        .play-cell {
+            background-color: var(--bg-color);
+            border: 1px solid var(--cell-border);
+            cursor: pointer;
+            min-height: 60px;
+            min-width: 60px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            user-select: none;
+        }
+
+        .play-cell:hover:not(.revealed) {
+            background-color: #f0f0f0;
+            transform: scale(1.02);
+        }
+
+        .play-cell.revealed {
+            cursor: default;
+        }
+
+        .play-cell.miss {
+            background-color: var(--miss-color);
+            color: var(--miss-text);
+            border-color: var(--miss-color);
+        }
+
+        .play-cell.hit {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes pop {
+            0% { transform: scale(0.8); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            font-family: inherit;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 4px 6px -1px rgba(34, 139, 34, 0.2);
+        }
+
+        button:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            transform: translateY(1px);
+        }
+        
+        .stats {
+            margin-top: 1rem;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .grid {
+                gap: 4px;
+            }
+            .cell {
+                padding: 0.5rem;
+                font-size: 0.8rem;
+            }
+            .play-cell {
+                min-height: 40px;
+                min-width: 40px;
+                font-size: 1.2rem;
+            }
+            .y-header {
+                padding-right: 0.5rem;
+            }
+            body {
+                padding: 1rem;
+            }
+        }
+        /* Vocab Bank */
+        .vocab-section {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 3rem;
+            background-color: var(--header-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .vocab-header {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vocab-header h2 {
+            font-size: 1.5rem;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .category-btn {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border: 1px solid var(--cell-border);
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .category-btn:hover {
+            background-color: #f0f0f0;
+            border-color: #dcdcdc;
+        }
+
+        .category-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .chunk-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .chunk-item {
+            background-color: var(--bg-color);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border-left: 4px solid var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .chunk-eng {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .chunk-pt {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="banner"></div>
+
+    <header>
+        <h1>English Battleship</h1>
+        <p class="subtitle">Find the 3 hidden ships by completing the sentences.</p>
+    </header>
+
+    <div class="game-container">
+        <div class="grid" id="grid">
+            <!-- Grid will be generated by JS -->
+        </div>
+        
+        <div class="controls">
+            <button id="new-game-btn">New Game</button>
+        </div>
+        <div class="stats" id="stats-display">
+            Ships found: 0 / 3
+        </div>
+    </div>
+
+    <div class="vocab-section">
+        <div class="vocab-header">
+            <h2>Vocabulary Bank</h2>
+            <p class="subtitle">Review the chunks we've learned so far</p>
+        </div>
+        <div class="category-buttons" id="category-buttons">
+            <!-- Buttons generated by JS -->
+        </div>
+
+    </div>
+
+    <script>
+        const categoriesData = {
+            "Original": {
+                x: ["Can I have", "Do you want", "I really need", "Let's go to", "Where is"],
+                y: ["a coffee?", "some help?", "the bathroom?", "the new park?", "your house?"]
+            },
+            "Formal Greetings": {
+                x: ["Good morning", "Good afternoon", "Hello", "Nice to meet you", "Good morning, sir"],
+                y: ["Bom dia", "Boa tarde", "Olá", "Prazer em conhecer", "Bom dia, senhor"]
+            },
+            "Casual Greetings": {
+                x: ["Hi!", "Hey!", "What's up?", "Yo!", "Hi there!"],
+                y: ["Oi!", "Ei!", "E aí?", "Qual é?", "Eee!"]
+            },
+            "Farewells": {
+                x: ["Goodbye", "Have a good day", "See you soon", "Bye", "Take care"],
+                y: ["Tchau", "Tenha um bom dia", "Até breve", "Falou", "Se cuida"]
+            },
+            "Dreams": {
+                x: ["I would...", "My biggest dream is...", "If I could fly...", "If I were invisible...", "Imagine you could..."],
+                y: ["travel the world.", "have no traffic.", "go anywhere.", "be a hero.", "have a superpower."]
+            },
+            "Opinions": {
+                x: ["I think...", "I don't think...", "In my opinion...", "I agree because...", "I disagree because..."],
+                y: ["it's a good idea.", "it's bad.", "you are right.", "you are wrong.", "it's interesting."]
+            },
+            "Classroom": {
+                x: ["Did you get that?", "I didn't catch that.", "How do you say this?", "I have a question.", "What does this mean?"],
+                y: ["I don't know.", "Sure, what is it?", "It means...", "Can I go to the bathroom?", "Speak slower, please."]
+            }
+        };
+
+        let currentCategory = "Original";
+        let xHeaders = categoriesData[currentCategory].x;
+        let yHeaders = categoriesData[currentCategory].y;
+
+        const GRID_SIZE = 5;
+        const NUM_SHIPS = 3;
+        
+        let ships = [];
+        let shipsFound = 0;
+        let bannerTimeout;
+
+        const gridElement = document.getElementById('grid');
+        const bannerElement = document.getElementById('banner');
+        const newGameBtn = document.getElementById('new-game-btn');
+        const statsDisplay = document.getElementById('stats-display');
+        const categoryButtonsContainer = document.getElementById('category-buttons');
+
+        function initVocabBank() {
+            const categories = Object.keys(categoriesData);
+            categoryButtonsContainer.innerHTML = '';
+            
+            categories.forEach((category, index) => {
+                const btn = document.createElement('button');
+                btn.className = 'category-btn';
+                if (category === currentCategory) btn.classList.add('active');
+                btn.textContent = category;
+                
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentCategory = category;
+                    xHeaders = categoriesData[category].x;
+                    yHeaders = categoriesData[category].y;
+                    initGame(); // Restart game with new vocabulary
+                });
+                
+                categoryButtonsContainer.appendChild(btn);
+            });
+        }
+
+        function initGame() {
+            shipsFound = 0;
+            updateStats();
+            generateShips();
+            renderGrid();
+        }
+
+        function generateShips() {
+            ships = [];
+            while (ships.length < NUM_SHIPS) {
+                const x = Math.floor(Math.random() * GRID_SIZE);
+                const y = Math.floor(Math.random() * GRID_SIZE);
+                
+                // Check if ship already exists at this coordinate
+                const exists = ships.some(ship => ship.x === x && ship.y === y);
+                if (!exists) {
+                    ships.push({ x, y });
+                }
+            }
+            console.log("Ships hidden at:", ships);
+        }
+
+        function renderGrid() {
+            gridElement.innerHTML = '';
+
+            // Top-left corner (empty)
+            const corner = document.createElement('div');
+            corner.className = 'cell corner-cell';
+            gridElement.appendChild(corner);
+
+            // X-axis headers
+            xHeaders.forEach(text => {
+                const header = document.createElement('div');
+                header.className = 'cell header-cell x-header';
+                header.textContent = text;
+                gridElement.appendChild(header);
+            });
+
+            // Rows
+            for (let y = 0; y < GRID_SIZE; y++) {
+                // Y-axis header
+                const rowHeader = document.createElement('div');
+                rowHeader.className = 'cell header-cell y-header';
+                rowHeader.textContent = yHeaders[y];
+                gridElement.appendChild(rowHeader);
+
+                // Playable cells
+                for (let x = 0; x < GRID_SIZE; x++) {
+                    const cell = document.createElement('div');
+                    cell.className = 'cell play-cell';
+                    cell.dataset.x = x;
+                    cell.dataset.y = y;
+                    
+                    cell.addEventListener('click', () => handleCellClick(cell, x, y));
+                    gridElement.appendChild(cell);
+                }
+            }
+        }
+
+        function handleCellClick(cell, x, y) {
+            if (cell.classList.contains('revealed')) return;
+
+            cell.classList.add('revealed');
+            
+            const isHit = ships.some(ship => ship.x === x && ship.y === y);
+            const phrase = `${xHeaders[x]} - ${yHeaders[y]}`;
+
+            if (isHit) {
+                cell.classList.add('hit');
+                cell.innerHTML = '&#10003;'; // Checkmark
+                shipsFound++;
+                updateStats();
+                
+                // Format the hit message
+                bannerElement.style.borderLeftColor = 'var(--primary-color)';
+                showBanner(`🚢 Hit! "${phrase}"`);
+                
+                if (shipsFound === NUM_SHIPS) {
+                    setTimeout(() => {
+                        bannerElement.style.borderLeftColor = 'var(--primary-color)';
+                        showBanner("🎉 Congratulations! You found all ships!");
+                    }, 2000);
+                }
+            } else {
+                cell.classList.add('miss');
+                cell.innerHTML = '&#10005;'; // X mark
+                
+                // Format the miss message
+                bannerElement.style.borderLeftColor = 'var(--miss-text)';
+                showBanner(`Miss! "${phrase}"`);
+            }
+        }
+
+        function showBanner(text) {
+            bannerElement.textContent = text;
+            bannerElement.classList.add('show');
+            
+            clearTimeout(bannerTimeout);
+            bannerTimeout = setTimeout(() => {
+                bannerElement.classList.remove('show');
+            }, 3000); // Hide after 3 seconds
+        }
+        
+        function updateStats() {
+            statsDisplay.textContent = `Ships found: ${shipsFound} / ${NUM_SHIPS}`;
+        }
+
+        newGameBtn.addEventListener('click', initGame);
+
+        // Initialize UI and start game
+        initVocabBank();
+        initGame();
+    </script>
+</body>
+</html>
