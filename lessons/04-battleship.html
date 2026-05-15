@@ -345,41 +345,29 @@
 
     <script>
         const categoriesData = {
-            "Original": {
-                x: ["Can I have", "Do you want", "I really need", "Let's go to", "Where is"],
-                y: ["a coffee?", "some help?", "the bathroom?", "the new park?", "your house?"]
+            "Actions & Leisure": {
+                x: ["I want to", "I need to", "I like to", "Do you want to", "Let's"],
+                y: ["play soccer", "study English", "watch TV", "go home", "eat pizza"]
             },
-            "Formal Greetings": {
-                x: ["Good morning", "Good afternoon", "Hello", "Nice to meet you", "Good morning, sir"],
-                y: ["Bom dia", "Boa tarde", "Olá", "Prazer em conhecer", "Bom dia, senhor"]
+            "City Places": {
+                x: ["I am going to", "Let's go to", "I really like", "Where is", "Can we go to"],
+                y: ["the hospital", "the park", "the supermarket", "the bathroom", "the school"]
             },
-            "Casual Greetings": {
-                x: ["Hi!", "Hey!", "What's up?", "Yo!", "Hi there!"],
-                y: ["Oi!", "Ei!", "E aí?", "Qual é?", "Eee!"]
+            "Feelings & Topics": {
+                x: ["I am thinking", "I am feeling happy", "I am feeling worried", "I am talking", "I am reading"],
+                y: ["about the English test", "about the weekend", "about the soccer game", "about the new movie", "about the school trip"]
             },
-            "Farewells": {
-                x: ["Goodbye", "Have a good day", "See you soon", "Bye", "Take care"],
-                y: ["Tchau", "Tenha um bom dia", "Até breve", "Falou", "Se cuida"]
+            "Understanding": {
+                x: ["Can you", "Could you", "Did you", "Do you", "I didn't"],
+                y: ["say this in English", "get that", "catch that", "understand it", "speak slowly"]
             },
-            "Dreams": {
-                x: ["I would...", "My biggest dream is...", "If I could fly...", "If I were invisible...", "Imagine you could..."],
-                y: ["travel the world.", "have no traffic.", "go anywhere.", "be a hero.", "have a superpower."]
-            },
-            "Opinions": {
-                x: ["I think...", "I don't think...", "In my opinion...", "I agree because...", "I disagree because..."],
-                y: ["it's a good idea.", "it's bad.", "you are right.", "you are wrong.", "it's interesting."]
-            },
-            "Classroom": {
-                x: ["Did you get that?", "I didn't catch that.", "How do you say this?", "I have a question.", "What does this mean?"],
-                y: ["I don't know.", "Sure, what is it?", "It means...", "Can I go to the bathroom?", "Speak slower, please."]
-            },
-            "Greetings & farewells": {
-                x: ["Good morning!", "Good afternoon!", "Hello!", "Nice to meet you", "What's up?"],
-                y: ["Hi!", "Have a good day!", "Goodbye!", "Have a good day!", "See you soon"]
+            "Classroom Questions": {
+                x: ["Can I", "Could you", "Did you", "Do you", "How do you"],
+                y: ["go to the bathroom?", "speak a little slower?", "say this in English?", "understand it?", "get that?"]
             }
         };
 
-        let currentCategory = "Original";
+        let currentCategory = "Actions & Leisure";
         let xHeaders = categoriesData[currentCategory].x;
         let yHeaders = categoriesData[currentCategory].y;
 
@@ -488,7 +476,7 @@
 
             if (isHit) {
                 cell.classList.add('hit');
-                cell.innerHTML = '&#10003;'; // Checkmark
+                cell.innerHTML = '🚢'; // Ship icon
                 shipsFound++;
                 updateStats();
                 
