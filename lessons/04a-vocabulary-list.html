@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lesson 04a — Vocabulary List</title>
+    <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream:     #F5F0E8;
+            --cream-mid: #EDE7DA;
+            --ink:       #1C1A17;
+            --ink-soft:  #4A4640;
+            --ink-faint: #9A948C;
+            --accent:    #2E2B27;
+            --rule:      #D4CCC0;
+            --serif:     'Forum', Georgia, serif;
+            --sans:      'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--cream);
+            color: var(--ink);
+            font-family: var(--sans);
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .subtitle {
+            font-family: var(--sans);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--ink-faint);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            margin-bottom: 18px;
+        }
+
+        h1 {
+            font-family: var(--serif);
+            font-size: 64px;
+            color: var(--ink);
+            margin-bottom: 10px;
+            font-weight: 400;
+            line-height: 1.1;
+        }
+
+        .category {
+            margin-bottom: 60px;
+            background: var(--cream-mid);
+            padding: 40px;
+            border-radius: 12px;
+            border: 1px solid var(--rule);
+        }
+
+        .category-title {
+            font-family: var(--serif);
+            font-size: 42px;
+            color: var(--ink);
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 16px;
+            font-weight: 400;
+        }
+
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 28px 40px;
+        }
+
+        .vocab-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vocab-en {
+            font-family: var(--serif);
+            font-size: 32px;
+            color: var(--ink);
+            line-height: 1.2;
+            margin-bottom: 6px;
+        }
+
+        .vocab-pt {
+            font-family: var(--sans);
+            font-size: 18px;
+            color: var(--ink-soft);
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 48px; }
+            .category { padding: 24px; }
+            .vocab-en { font-size: 28px; }
+            .category-title { font-size: 32px; }
+            .vocab-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="subtitle">English Conversation · Lesson 04a</div>
+            <h1>Vocabulary List</h1>
+        </header>
+
+        <!-- Category 1 -->
+        <section class="category">
+            <h2 class="category-title">Actions & Leisure</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <span class="vocab-en">I want to</span>
+                    <span class="vocab-pt">Eu quero</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I need to</span>
+                    <span class="vocab-pt">Eu preciso</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I like to</span>
+                    <span class="vocab-pt">Eu gosto de</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Do you want to</span>
+                    <span class="vocab-pt">Você quer...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Let's</span>
+                    <span class="vocab-pt">Vamos</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">play soccer</span>
+                    <span class="vocab-pt">jogar futebol</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">study English</span>
+                    <span class="vocab-pt">estudar inglês</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">watch TV</span>
+                    <span class="vocab-pt">assistir TV</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">go home</span>
+                    <span class="vocab-pt">ir para casa</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">eat pizza</span>
+                    <span class="vocab-pt">comer pizza</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category 2 -->
+        <section class="category">
+            <h2 class="category-title">City Places</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <span class="vocab-en">I am going to</span>
+                    <span class="vocab-pt">Eu estou indo para</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Let's go to</span>
+                    <span class="vocab-pt">Vamos para</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I really like</span>
+                    <span class="vocab-pt">Eu gosto muito de</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Where is</span>
+                    <span class="vocab-pt">Onde é / Onde fica</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Can we go to</span>
+                    <span class="vocab-pt">Nós podemos ir para...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">the hospital</span>
+                    <span class="vocab-pt">o hospital</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">the park</span>
+                    <span class="vocab-pt">o parque</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">the supermarket</span>
+                    <span class="vocab-pt">o supermercado</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">the bathroom</span>
+                    <span class="vocab-pt">o banheiro</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">the school</span>
+                    <span class="vocab-pt">a escola</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category 3 -->
+        <section class="category">
+            <h2 class="category-title">Feelings & Topics</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <span class="vocab-en">I am thinking</span>
+                    <span class="vocab-pt">Eu estou pensando</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I am feeling happy</span>
+                    <span class="vocab-pt">Eu estou me sentindo feliz</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I am feeling worried</span>
+                    <span class="vocab-pt">Estou me sentindo preocupado(a)</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I am talking</span>
+                    <span class="vocab-pt">Eu estou falando</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I am reading</span>
+                    <span class="vocab-pt">Eu estou lendo</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">about the English test</span>
+                    <span class="vocab-pt">sobre a prova de inglês</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">about the weekend</span>
+                    <span class="vocab-pt">sobre o fim de semana</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">about the soccer game</span>
+                    <span class="vocab-pt">sobre o jogo de futebol</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">about the new movie</span>
+                    <span class="vocab-pt">sobre o filme novo</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">about the school trip</span>
+                    <span class="vocab-pt">sobre a viagem da escola</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category 4 -->
+        <section class="category">
+            <h2 class="category-title">Understanding</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <span class="vocab-en">Can you</span>
+                    <span class="vocab-pt">Você pode...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Could you</span>
+                    <span class="vocab-pt">Você poderia...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Did you</span>
+                    <span class="vocab-pt">Você...? (Passado)</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Do you</span>
+                    <span class="vocab-pt">Você...? (Presente)</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">I didn't</span>
+                    <span class="vocab-pt">Eu não... (Passado)</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">say this in English</span>
+                    <span class="vocab-pt">dizer isso em inglês</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">get that</span>
+                    <span class="vocab-pt">entender isso</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">catch that</span>
+                    <span class="vocab-pt">entender isso</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">understand it</span>
+                    <span class="vocab-pt">entender isso</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">speak slowly</span>
+                    <span class="vocab-pt">falar devagar</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category 5 -->
+        <section class="category">
+            <h2 class="category-title">Classroom Questions</h2>
+            <div class="vocab-grid">
+                <div class="vocab-item">
+                    <span class="vocab-en">Can I</span>
+                    <span class="vocab-pt">Eu posso...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Could you</span>
+                    <span class="vocab-pt">Você poderia...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Did you</span>
+                    <span class="vocab-pt">Você...? (Passado)</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">Do you</span>
+                    <span class="vocab-pt">Você...? (Presente)</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">How do you</span>
+                    <span class="vocab-pt">Como você...?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">go to the bathroom?</span>
+                    <span class="vocab-pt">ir ao banheiro?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">speak a little slower?</span>
+                    <span class="vocab-pt">falar um pouco mais devagar?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">say this in English?</span>
+                    <span class="vocab-pt">dizer isso em inglês?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">understand it?</span>
+                    <span class="vocab-pt">entender isso?</span>
+                </div>
+                <div class="vocab-item">
+                    <span class="vocab-en">get that?</span>
+                    <span class="vocab-pt">entender isso?</span>
+                </div>
+            </div>
+        </section>
+
+    </div>
+</body>
+</html>
