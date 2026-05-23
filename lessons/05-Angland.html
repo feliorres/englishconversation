@@ -1150,6 +1150,606 @@
                 display: none; /* Hide portrait on small screens to save space */
             }
         }
+
+        /* ==========================================================================
+           LESSON PRACTICE SCREEN STYLES (Retro Visual Novel style)
+           ========================================================================== */
+        #lesson-practice-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #1a1a2e; /* Slate/Midnight blue */
+            background-image: 
+                radial-gradient(#16213e 15%, transparent 16%),
+                radial-gradient(#16213e 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 300;
+            padding: 35px 20px;
+            box-sizing: border-box;
+            color: #ffffff;
+            image-rendering: pixelated;
+        }
+
+        #lesson-practice-screen.active {
+            display: flex;
+        }
+
+        /* Practice Header & Progress bar */
+        .practice-header {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .practice-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: var(--color-gold);
+            text-shadow: 0 4px 10px rgba(255, 209, 102, 0.4);
+            letter-spacing: 4px;
+        }
+
+        .practice-progress {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.7rem;
+            color: var(--color-azure-light);
+        }
+
+        .practice-bar-outer {
+            width: 100%;
+            height: 12px;
+            background-color: #0f0f1b;
+            border: 3px solid #ffd166;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .practice-bar-inner {
+            width: 10%;
+            height: 100%;
+            background-color: var(--color-emerald);
+            transition: width 0.4s ease;
+        }
+
+        /* Stage containing Barros and Anglo */
+        .practice-stage {
+            display: flex;
+            width: 100%;
+            max-width: 950px;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex: 1;
+            padding-bottom: 40px;
+            position: relative;
+        }
+
+        .character-holder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            width: 320px;
+        }
+
+        /* Double-scaled pixel avatars inside visual novel stage */
+        .visual-novel-avatar {
+            transform: scale(4.8);
+            transform-origin: bottom center;
+            margin-bottom: 75px;
+            filter: drop-shadow(10px 10px 0px rgba(0,0,0,0.4));
+        }
+
+        .character-tag {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            color: #ffffff;
+            background-color: #000000;
+            border: 2px solid #ffd166;
+            padding: 6px 16px;
+            border-radius: 6px;
+            text-shadow: 2px 2px 0px #222;
+        }
+
+        /* Centered Dialog Box System (Visual Novel style) */
+        #practice-dialogue-center {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 440px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            z-index: 100;
+        }
+
+        .center-speech-box {
+            background-color: #ffffff;
+            border: 4px solid #000000;
+            border-radius: 12px;
+            padding: 14px 20px;
+            box-shadow: 6px 6px 0px rgba(0,0,0,0.3);
+            font-family: 'Press Start 2P', monospace;
+            color: #000000;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: left;
+        }
+
+        .center-speech-box.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .speech-speaker-label {
+            font-size: 0.62rem;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            background-color: #000000;
+            padding: 4px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            letter-spacing: 1px;
+            font-weight: bold;
+        }
+
+        .speech-text-en {
+            font-size: 0.72rem;
+            line-height: 1.8;
+            font-weight: bold;
+            color: #000000;
+        }
+
+        .speech-text-pt {
+            font-size: 0.58rem;
+            line-height: 1.6;
+            color: #555555;
+            margin-top: 8px;
+            border-top: 1px dashed #cccccc;
+            padding-top: 6px;
+        }
+
+        /* Repetition Warning Banner */
+        .repetition-banner {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            color: #000000;
+            background-color: var(--color-gold);
+            border: 3.5px solid #000000;
+            padding: 10px 25px;
+            border-radius: 8px;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
+            z-index: 15;
+            display: none;
+            animation: banner-glow 0.8s infinite alternate ease-in-out;
+            text-align: center;
+        }
+
+        .repetition-banner.active {
+            display: block;
+        }
+
+        @keyframes banner-glow {
+            0% { box-shadow: 0 0 5px var(--color-gold), 4px 4px 0px rgba(0,0,0,0.3); }
+            100% { box-shadow: 0 0 20px var(--color-gold), 4px 4px 0px rgba(0,0,0,0.3); }
+        }
+
+        /* Centered Pulsing Turma Speech Bubble */
+        .turma-speech-bubble-container {
+            display: none;
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 480px;
+            background-color: #ffffff;
+            border: 4px solid #000000;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(6, 214, 160, 0.4), 6px 6px 0px rgba(0,0,0,0.3);
+            text-align: center;
+            font-family: 'Press Start 2P', monospace;
+            color: #000000;
+            z-index: 150;
+        }
+
+        .turma-speech-bubble-container.active {
+            display: block;
+            animation: turma-bubble-pulse 1.3s infinite alternate ease-in-out;
+        }
+
+        @keyframes turma-bubble-pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(1);
+                box-shadow: 0 0 15px rgba(6, 214, 160, 0.3), 6px 6px 0px rgba(0,0,0,0.3);
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.06);
+                box-shadow: 0 0 35px rgba(6, 214, 160, 0.7), 6px 6px 0px rgba(0,0,0,0.3);
+            }
+        }
+
+        .turma-bubble-title {
+            font-size: 0.6rem;
+            color: var(--color-terracotta);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .turma-bubble-text {
+            font-size: 0.75rem;
+            line-height: 1.8;
+            color: var(--color-moss);
+            font-weight: bold;
+        }
+
+        .turma-bubble-translation {
+            font-size: 0.58rem;
+            line-height: 1.6;
+            color: #666666;
+            margin-top: 8px;
+            border-top: 1px dashed #dddddd;
+            padding-top: 6px;
+        }
+
+        @keyframes bounce-little {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-5px); }
+        }
+
+        /* Pointing Arm CSS styling for visual-novel-avatar scale */
+        .anglo-pointing-arm {
+            display: none;
+            position: absolute;
+            top: 13px;
+            left: -12px;
+            width: 14px;
+            height: 6px;
+            background-color: #FFDBB5; /* skin color */
+            border: 1.5px solid #000;
+            z-index: 15;
+            transform: rotate(-10deg);
+        }
+
+        .anglo-pointing-arm::after {
+            content: '';
+            position: absolute;
+            right: -6px;
+            top: -1.5px;
+            width: 5px;
+            height: 5px;
+            background-color: #0077B6; /* Blue sleeve */
+            border: 1.5px solid #000;
+        }
+
+        /* Pointing State active */
+        .visual-novel-avatar.pointing .anglo-pointing-arm {
+            display: block;
+            animation: point-arm-wiggle 0.3s infinite alternate ease-in-out;
+        }
+
+        .visual-novel-avatar.pointing .anglo-staff-container {
+            transform: rotate(35deg) translate(-3px, 3px);
+            opacity: 0.7;
+        }
+
+        @keyframes point-arm-wiggle {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(-25deg); }
+        }
+
+        /* Retro Practice Controls */
+        .practice-controls {
+            display: flex;
+            gap: 30px;
+            margin-top: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .retro-control-btn {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.8rem;
+            padding: 14px 28px;
+            border: 3.5px solid #000000;
+            border-radius: 8px;
+            cursor: pointer;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.3);
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+            transition: transform 0.1s, box-shadow 0.1s;
+        }
+
+        .retro-control-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.4);
+        }
+
+        .btn-prev {
+            background-color: #8c6239;
+            color: #ffffff;
+        }
+
+        .btn-prev:hover {
+            background-color: #5c4033;
+        }
+
+        .btn-next {
+            background-color: var(--color-emerald);
+            color: #ffffff;
+        }
+
+        .btn-next:hover {
+            background-color: var(--color-gold);
+            color: #000000;
+        }
+
+        /* ==========================================================================
+           HISTORICAL SCROLL SCREEN STYLES (Pergaminho)
+           ========================================================================== */
+        #historical-scroll-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #0f0f1b;
+            background-image: 
+                radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0),
+                radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 500;
+            padding: 20px;
+            box-sizing: border-box;
+            image-rendering: pixelated;
+        }
+
+        #historical-scroll-screen.active {
+            display: flex;
+        }
+
+        .scroll-container {
+            width: 95vw;
+            max-width: 1100px;
+            height: 80vh;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            filter: drop-shadow(10px 10px 0px rgba(0,0,0,0.5));
+        }
+
+        /* Wooden Spindle rolls decoration */
+        .scroll-wood-roller {
+            height: 18px;
+            background: linear-gradient(to right, #5c3a21, #8c6239 30%, #5c3a21 80%);
+            border: 4px solid #000000;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        .top-roller {
+            margin-bottom: -6px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .bottom-roller {
+            margin-top: -6px;
+            box-shadow: 0 -4px 6px rgba(0,0,0,0.3);
+        }
+
+        .scroll-paper {
+            flex: 1;
+            background: radial-gradient(circle, #fbf2d5 50%, #e5d2a4 100%);
+            box-shadow: inset 0 0 50px rgba(110, 73, 37, 0.25);
+            border-left: 8px solid #8c6239;
+            border-right: 8px solid #8c6239;
+            border-top: 4px solid #000000;
+            border-bottom: 4px solid #000000;
+            padding: 24px 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .scroll-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            color: #b33939; /* Beautiful Crimson Red */
+            text-align: center;
+            text-shadow: 1px 1px 0px #ffffff;
+            margin: 0 0 4px 0;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .scroll-subtitle {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.55rem;
+            color: #8c6239;
+            text-align: center;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .scroll-body-content {
+            width: 100%;
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Two Column Layout Wrapper */
+        .scroll-columns-wrapper {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 30px;
+            width: 100%;
+        }
+
+        .scroll-column-left {
+            border-right: 3px dashed rgba(140, 98, 57, 0.4);
+            padding-right: 30px;
+        }
+
+        .scroll-column-right {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* Custom Parchment Scrollbar */
+        .scroll-body-content::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .scroll-body-content::-webkit-scrollbar-track {
+            background: rgba(140, 98, 57, 0.1);
+            border-left: 2px dashed #8c6239;
+            border-radius: 4px;
+        }
+
+        .scroll-body-content::-webkit-scrollbar-thumb {
+            background: #8c6239;
+            border: 2px solid #e5d2a4;
+            border-radius: 4px;
+        }
+
+        .scroll-section-title {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.72rem;
+            color: #5c3a21;
+            border-bottom: 4px double #8c6239;
+            padding-bottom: 8px;
+            margin-bottom: 16px;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        /* Transcript Line layout */
+        .scroll-transcript-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .transcript-line {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.58rem;
+            line-height: 1.8;
+            color: #222222;
+        }
+
+        .speaker-barros {
+            color: #b33939; /* Red for Barros */
+            font-weight: bold;
+        }
+
+        .speaker-anglo {
+            color: #0d5c56; /* Teal blue/green for Anglo */
+            font-weight: bold;
+        }
+
+        .transcript-line .pt-translation {
+            display: block;
+            font-size: 0.52rem;
+            color: #555555;
+            margin-left: 12px;
+            border-left: 2px solid #8c6239;
+            padding-left: 6px;
+            margin-top: 4px;
+        }
+
+        /* Grammar card layout */
+        .grammar-card {
+            background-color: rgba(255, 255, 255, 0.45);
+            border: 3px dashed #8c6239;
+            border-radius: 8px;
+            padding: 16px;
+            font-family: 'Press Start 2P', monospace;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .grammar-card h3 {
+            font-size: 0.65rem;
+            color: #5c3a21;
+            margin: 0 0 12px 0;
+            border-bottom: 2px solid #8c6239;
+            padding-bottom: 6px;
+        }
+
+        .grammar-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .grammar-list li {
+            font-size: 0.58rem;
+            line-height: 1.6;
+            color: #222222;
+        }
+
+        .highlight-en {
+            color: #0d5c56;
+            background-color: rgba(6, 214, 160, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        /* Final Scroll finish button */
+        .scroll-finish-btn {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.85rem;
+            background-color: var(--color-gold);
+            color: #000000;
+            border: 4px solid #000000;
+            border-radius: 8px;
+            padding: 14px 35px;
+            margin-top: 25px;
+            cursor: pointer;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.5);
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.4);
+            transition: transform 0.1s, box-shadow 0.1s;
+            z-index: 10;
+        }
+
+        .scroll-finish-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.5);
+        }
+
+        .scroll-finish-btn:hover {
+            background-color: var(--color-emerald);
+            color: #ffffff;
+            text-shadow: none;
+        }
     </style>
 </head>
 
@@ -1394,6 +1994,216 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- TELA DA LIÇÃO DE PRÁTICA (VISUAL NOVEL RPG) -->
+    <div id="lesson-practice-screen">
+        <div class="practice-header">
+            <div class="practice-title">Lição de Conversação</div>
+            <div class="practice-progress" id="practice-progress-text">SLIDE 1 / 10</div>
+            <div class="practice-bar-outer">
+                <div class="practice-bar-inner" id="practice-progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- Warning banner for repetition -->
+        <div class="repetition-banner" id="repetition-banner-el">
+            ▲ SUA VEZ! REPETE COM A TURMA! ▲
+        </div>
+
+        <div class="practice-stage">
+            <!-- Barros (Left) -->
+            <div class="character-holder left-character">
+                <div class="barros-sprite visual-novel-avatar">
+                    <div class="barros-hair"></div>
+                    <div class="barros-head">
+                        <div class="barros-eyes"></div>
+                    </div>
+                    <div class="barros-scarf"></div>
+                    <div class="barros-tunic">
+                        <div class="barros-belt"></div>
+                    </div>
+                    <div class="barros-legs">
+                        <div class="barros-leg"></div>
+                        <div class="barros-leg"></div>
+                    </div>
+                </div>
+                <div class="character-tag">Barros</div>
+            </div>
+
+            <!-- CENTRALIZED SPEECH BUBBLES IN THE CENTER OF THE VIEWPORT (New!) -->
+            <div id="practice-dialogue-center">
+                <!-- Barros Speech Box -->
+                <div class="center-speech-box barros-box" id="barros-speech-container">
+                    <div class="speech-speaker-label" style="color: var(--color-gold);">Barros:</div>
+                    <div class="speech-text-en" id="barros-text-en">Do you understand me?</div>
+                    <div class="speech-text-pt" id="barros-text-pt">Você me entende?</div>
+                </div>
+                
+                <!-- Anglo Speech Box -->
+                <div class="center-speech-box anglo-box" id="anglo-speech-container">
+                    <div class="speech-speaker-label" style="color: var(--color-azure-light);">Anglo:</div>
+                    <div class="speech-text-en" id="anglo-text-en">No, I don't.</div>
+                    <div class="speech-text-pt" id="anglo-text-pt">Não, eu não entendo.</div>
+                </div>
+            </div>
+
+            <!-- Anglo (Right) -->
+            <div class="character-holder right-character">
+                <div class="anglo-sprite visual-novel-avatar" id="anglo-practice-sprite">
+                    <div class="anglo-hair"></div>
+                    <div class="anglo-head">
+                        <div class="anglo-eyes"></div>
+                    </div>
+                    <!-- Pointing Arm (Only visible when pointing class is active) -->
+                    <div class="anglo-pointing-arm"></div>
+                    <div class="anglo-scarf-tail"></div>
+                    <div class="anglo-scarf"></div>
+                    <div class="anglo-tunic">
+                        <div class="anglo-belt"></div>
+                    </div>
+                    <div class="anglo-legs">
+                        <div class="anglo-leg"></div>
+                        <div class="anglo-leg"></div>
+                    </div>
+                    <div class="anglo-boots">
+                        <div class="anglo-boot"></div>
+                        <div class="anglo-boot"></div>
+                    </div>
+                    <div class="anglo-staff-container">
+                        <div class="anglo-staff-crystal"></div>
+                        <div class="anglo-staff-shaft"></div>
+                    </div>
+                </div>
+                <div class="character-tag">Anglo</div>
+            </div>
+        </div>
+
+        <!-- Turma Group Speech Bubble (Visible on repetition slides) -->
+        <div class="turma-speech-bubble-container" id="turma-bubble-container">
+            <div class="turma-bubble-title">A Turma Repete:</div>
+            <div class="turma-bubble-text" id="turma-bubble-content">"Do you understand me?"</div>
+            <div class="turma-bubble-translation" id="turma-bubble-translation-content">"Você me entende?"</div>
+        </div>
+
+        <!-- Controls footer -->
+        <div class="practice-controls">
+            <button class="retro-control-btn btn-prev" onclick="prevPracticeSlide()">‹ Voltar</button>
+            <button class="retro-control-btn btn-next" onclick="nextPracticeSlide()">Avançar ›</button>
+        </div>
+    </div>
+
+    <!-- TELA DO REGISTRO HISTÓRICO (PERGAMINHO) -->
+    <div id="historical-scroll-screen">
+        <div class="scroll-container">
+            <!-- Top wooden roller decoration -->
+            <div class="scroll-wood-roller top-roller"></div>
+            
+            <div class="scroll-paper">
+                <h1 class="scroll-title">Registro Histórico</h1>
+                <p class="scroll-subtitle">Diálogo & Gramática de Angland</p>
+                
+                <div class="scroll-body-content">
+                    <div class="scroll-columns-wrapper">
+                        
+                        <!-- COLUNA DA ESQUERDA: TRANSCRIÇÃO -->
+                        <div class="scroll-column-left">
+                            <h2 class="scroll-section-title">✦ Transcrição do Diálogo ✦</h2>
+                            <div class="scroll-transcript-list">
+                                <div class="transcript-line">
+                                    <span class="speaker-barros">Barros:</span> "Do you understand me?"
+                                    <span class="pt-translation">"Você me entende?"</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-anglo">Anglo:</span> "No, I don't."
+                                    <span class="pt-translation">"Não, eu não entendo."</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-barros">Barros:</span> "Do you speak English?"
+                                    <span class="pt-translation">"Você fala inglês?"</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-anglo">Anglo:</span> "No, I don't."
+                                    <span class="pt-translation">"Não, eu não falo."</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-barros">Barros:</span> "What language do you speak?"
+                                    <span class="pt-translation">"Que idioma você fala?"</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-anglo">Anglo:</span> "I speak Portuguese."
+                                    <span class="pt-translation">"Eu falo português."</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-barros">Barros:</span> "Ok, I will be your translator."
+                                    <span class="pt-translation">"Ok, eu serei seu tradutor."</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-anglo">Anglo:</span> "What?"
+                                    <span class="pt-translation">"O quê?"</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-barros">Barros:</span> "A translator translates English to Portuguese."
+                                    <span class="pt-translation">"Um tradutor traduz inglês para português."</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-anglo">Anglo:</span> "Good!"
+                                    <span class="pt-translation">"Bom!"</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-barros">Barros:</span> "But you all will learn English."
+                                    <span class="pt-translation">"Mas todos vocês aprenderão inglês."</span>
+                                </div>
+                                <div class="transcript-line">
+                                    <span class="speaker-anglo">Anglo:</span> "Yes, we will!"
+                                    <span class="pt-translation">"Sim, nós aprenderemos!"</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- COLUNA DA DIREITA: GRAMÁTICA -->
+                        <div class="scroll-column-right">
+                            <h2 class="scroll-section-title">✦ Gramática da Lição ✦</h2>
+                            
+                            <div class="grammar-card">
+                                <h3>1) Verbo To Do</h3>
+                                <ul class="grammar-list">
+                                    <li><strong class="highlight-en">I do</strong> = Eu faço</li>
+                                    <li><strong class="highlight-en">You do</strong> = Você faz</li>
+                                    <li><strong class="highlight-en">He / She / It does</strong> = Ele/ela faz</li>
+                                    <li><strong class="highlight-en">We do</strong> = Nós fazemos</li>
+                                    <li><strong class="highlight-en">You do</strong> = Vocês fazem</li>
+                                    <li><strong class="highlight-en">They do</strong> = Eles/elas fazem</li>
+                                </ul>
+                            </div>
+
+                            <div class="grammar-card">
+                                <h3>2) Pergunta (Questions)</h3>
+                                <ul class="grammar-list">
+                                    <li><strong class="highlight-en">Do you [verbo]?</strong> (Ex: Do you speak?)</li>
+                                    <li><strong class="highlight-en">Does he [verbo]?</strong> (Ex: Does he understand?)</li>
+                                </ul>
+                            </div>
+
+                            <div class="grammar-card">
+                                <h3>3) Will (Futuro)</h3>
+                                <ul class="grammar-list">
+                                    <li><strong class="highlight-en">I will do</strong> = Eu vou fazer / Eu farei</li>
+                                    <li><strong class="highlight-en">You will do</strong> = Você vai fazer / Você fará</li>
+                                    <li><strong class="highlight-en">She will do</strong> = Ela vai fazer / Ela fará</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom wooden roller decoration -->
+            <div class="scroll-wood-roller bottom-roller"></div>
+        </div>
+
+        <button class="scroll-finish-btn" onclick="finishHistoricalScroll()">Concluir Jornada</button>
     </div>
 
     <script>
@@ -1776,9 +2586,221 @@
             dialogueBox.classList.remove('active');
             
             setTimeout(() => {
-                alert("Parabéns! Você aceitou o desafio de conversação de Barros! Preparando lição...");
-                location.reload();
-            }, 600);
+                startPracticeScreen();
+            }, 500);
+        }
+
+        // --- SISTEMA DE LIÇÃO DE PRÁTICA INTERATIVA (SLIDES) ---
+        const practiceSlides = [
+            {
+                barrosEn: "Do you understand me?",
+                barrosPt: "Você me entende?",
+                angloEn: "No, I don't.",
+                angloPt: "Não, eu não entendo.",
+                isRepetition: false
+            },
+            {
+                barrosEn: "Do you speak English?",
+                barrosPt: "Você fala inglês?",
+                angloEn: "No, I don't.",
+                angloPt: "Não, eu não falo.",
+                isRepetition: false
+            },
+            {
+                barrosEn: "What language do you speak?",
+                barrosPt: "Que idioma você fala?",
+                angloEn: "I speak Portuguese.",
+                angloPt: "Eu falo português.",
+                isRepetition: false
+            },
+            {
+                barrosEn: "Ok, I will be your translator.",
+                barrosPt: "Ok, eu serei seu tradutor.",
+                angloEn: "What?",
+                angloPt: "O quê?",
+                isRepetition: false
+            },
+            {
+                barrosEn: "A translator translates English to Portuguese.",
+                barrosPt: "Um tradutor traduz inglês para português.",
+                angloEn: "Good!",
+                angloPt: "Bom!",
+                isRepetition: false
+            },
+            {
+                barrosEn: "But you all will learn English.",
+                barrosPt: "Mas todos vocês aprenderão inglês.",
+                angloEn: "Yes, we will!",
+                angloPt: "Sim, nós aprenderemos!",
+                isRepetition: false
+            },
+            {
+                barrosEn: "Ok, repeat with me, now:\n\"Do you understand me?\"",
+                barrosPt: "Ok, repita comigo agora:\n\"Você me entende?\"",
+                angloEn: "You!",
+                angloPt: "Você!",
+                turmaEn: "Do you understand me?",
+                turmaPt: "Você me entende?",
+                isRepetition: true
+            },
+            {
+                barrosEn: "Do you speak English?",
+                barrosPt: "Você fala inglês?",
+                angloEn: "You!",
+                angloPt: "Você!",
+                turmaEn: "I don't.",
+                turmaPt: "Eu não falo.",
+                isRepetition: true
+            },
+            {
+                barrosEn: "What language do you speak?",
+                barrosPt: "Que idioma você fala?",
+                angloEn: "You!",
+                angloPt: "Você!",
+                turmaEn: "I speak Portuguese.",
+                turmaPt: "Eu falo português.",
+                isRepetition: true
+            },
+            {
+                barrosEn: "Ok, I will be your translator.",
+                barrosPt: "Ok, eu serei seu tradutor.",
+                angloEn: "You!",
+                angloPt: "Você!",
+                turmaEn: "What?",
+                turmaPt: "O quê?",
+                isRepetition: true
+            },
+            {
+                barrosEn: "A translator translates English to Portuguese.",
+                barrosPt: "Um tradutor traduz inglês para português.",
+                angloEn: "You!",
+                angloPt: "Você!",
+                turmaEn: "Good!",
+                turmaPt: "Bom!",
+                isRepetition: true
+            },
+            {
+                barrosEn: "But you all will learn English.",
+                barrosPt: "Mas todos vocês aprenderão inglês.",
+                angloEn: "You!",
+                angloPt: "Você!",
+                turmaEn: "Yes, we will!",
+                turmaPt: "Sim, nós aprenderemos!",
+                isRepetition: true
+            },
+            {
+                barrosEn: "Excellent job! You are ready for the next level!",
+                barrosPt: "Excelente trabalho! Vocês estão prontos para o próximo nível!",
+                angloEn: "Yes! We are!",
+                angloPt: "Sim! Nós estamos!",
+                isRepetition: false
+            }
+        ];
+        let currentPracticeIndex = 0;
+
+        function startPracticeScreen() {
+            // Desativa a tela de jogo
+            document.getElementById('gameplay-screen').classList.remove('active');
+            
+            // Exibe a tela de prática
+            const practiceScreen = document.getElementById('lesson-practice-screen');
+            practiceScreen.classList.add('active');
+            
+            currentPracticeIndex = 0;
+            loadPracticeSlide(0);
+        }
+
+        function loadPracticeSlide(index) {
+            currentPracticeIndex = index;
+            const slide = practiceSlides[index];
+            
+            // Atualiza progresso e barra
+            const total = practiceSlides.length;
+            document.getElementById('practice-progress-text').textContent = `SLIDE ${index + 1} / ${total}`;
+            document.getElementById('practice-progress-bar').style.width = `${((index + 1) / total) * 100}%`;
+            
+            // Elementos de diálogos centrais
+            const barrosBox = document.getElementById('barros-speech-container');
+            const angloBox = document.getElementById('anglo-speech-container');
+            
+            const barrosEn = document.getElementById('barros-text-en');
+            const barrosPt = document.getElementById('barros-text-pt');
+            const angloEn = document.getElementById('anglo-text-en');
+            const angloPt = document.getElementById('anglo-text-pt');
+            
+            const angloSprite = document.getElementById('anglo-practice-sprite');
+            const repetitionBanner = document.getElementById('repetition-banner-el');
+            const turmaBubble = document.getElementById('turma-bubble-container');
+            
+            // Remove estados ativos de animação
+            barrosBox.classList.remove('active');
+            angloBox.classList.remove('active');
+            angloSprite.classList.remove('pointing');
+            repetitionBanner.classList.remove('active');
+            turmaBubble.classList.remove('active');
+            
+            // Se for slide de repetição, foca exclusivamente na fala de repetição da Turma
+            if (slide.isRepetition) {
+                // Configura textos nos balões centrais invisíveis para manter coerência
+                barrosEn.textContent = slide.barrosEn;
+                barrosPt.textContent = slide.barrosPt;
+                angloEn.textContent = slide.angloEn;
+                angloPt.textContent = slide.angloPt;
+                
+                // Ativa apontar de Anglo e banner de repetição
+                angloSprite.classList.add('pointing');
+                repetitionBanner.classList.add('active');
+                
+                // Exibe o balão central pulsante da Turma com a frase e sua tradução
+                setTimeout(() => {
+                    document.getElementById('turma-bubble-content').textContent = `"${slide.turmaEn}"`;
+                    document.getElementById('turma-bubble-translation-content').textContent = `"${slide.turmaPt}"`;
+                    turmaBubble.classList.add('active');
+                }, 100);
+            } else {
+                // Slide normal: configura textos
+                barrosEn.textContent = slide.barrosEn;
+                barrosPt.textContent = slide.barrosPt;
+                angloEn.textContent = slide.angloEn;
+                angloPt.textContent = slide.angloPt;
+                
+                // Exibe balões com delays orgânicos de diálogo no centro
+                setTimeout(() => {
+                    barrosBox.classList.add('active');
+                    
+                    setTimeout(() => {
+                        angloBox.classList.add('active');
+                    }, 500);
+                }, 100);
+            }
+        }
+
+        function nextPracticeSlide() {
+            if (currentPracticeIndex < practiceSlides.length - 1) {
+                loadPracticeSlide(currentPracticeIndex + 1);
+            } else {
+                finishPractice();
+            }
+        }
+
+        function prevPracticeSlide() {
+            if (currentPracticeIndex > 0) {
+                loadPracticeSlide(currentPracticeIndex - 1);
+            }
+        }
+
+        function finishPractice() {
+            // Desativa a tela de prática
+            document.getElementById('lesson-practice-screen').classList.remove('active');
+            
+            // Exibe a tela do pergaminho de registro histórico!
+            const scrollScreen = document.getElementById('historical-scroll-screen');
+            scrollScreen.classList.add('active');
+        }
+
+        function finishHistoricalScroll() {
+            alert("Parabéns! Você registrou o progresso e completou a lição com sucesso!");
+            location.reload();
         }
 
         document.addEventListener('keydown', (event) => {
