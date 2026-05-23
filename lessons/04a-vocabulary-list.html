@@ -119,6 +119,26 @@
             <h1>Vocabulary List</h1>
         </header>
 
+        <div style="text-align: center; margin-bottom: 40px; display: flex; flex-direction: column; align-items: center; gap: 10px;">
+            <a href="https://feliorres.github.io/englishconversation/lessons/04-battleship.html" style="display: inline-block; background-color: var(--accent); color: var(--cream); padding: 12px 24px; border-radius: 30px; text-decoration: none; font-family: var(--sans); font-size: 16px; font-weight: 500;">Play Battleship Game</a>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+                <div>
+                    <button id="qr-btn" style="background: none; border: 1px solid var(--rule); color: var(--ink); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: var(--sans);">Battleship QR</button>
+                    <div id="qr-container" style="display: none; margin-top: 10px;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://feliorres.github.io/englishconversation/lessons/04-battleship.html" alt="QR Code" style="border: 1px solid var(--rule); padding: 5px; background: white;">
+                    </div>
+                </div>
+                
+                <div>
+                    <button id="qr-btn-04a" style="background: none; border: 1px solid var(--rule); color: var(--ink); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-family: var(--sans);">Vocabulary QR</button>
+                    <div id="qr-container-04a" style="display: none; margin-top: 10px;">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://feliorres.github.io/englishconversation/lessons/04a-vocabulary-list.html" alt="QR Code" style="border: 1px solid var(--rule); padding: 5px; background: white;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Category 1 -->
         <section class="category">
             <h2 class="category-title">Actions & Leisure</h2>
@@ -355,5 +375,30 @@
         </section>
 
     </div>
+    <script>
+        const qrBtn = document.getElementById('qr-btn');
+        const qrContainer = document.getElementById('qr-container');
+        qrBtn.addEventListener('click', () => {
+            if (qrContainer.style.display === 'none') {
+                qrContainer.style.display = 'block';
+                qrBtn.textContent = 'Hide Battleship QR';
+            } else {
+                qrContainer.style.display = 'none';
+                qrBtn.textContent = 'Battleship QR';
+            }
+        });
+
+        const qrBtn04a = document.getElementById('qr-btn-04a');
+        const qrContainer04a = document.getElementById('qr-container-04a');
+        qrBtn04a.addEventListener('click', () => {
+            if (qrContainer04a.style.display === 'none') {
+                qrContainer04a.style.display = 'block';
+                qrBtn04a.textContent = 'Hide Vocab QR';
+            } else {
+                qrContainer04a.style.display = 'none';
+                qrBtn04a.textContent = 'Vocabulary QR';
+            }
+        });
+    </script>
 </body>
 </html>
