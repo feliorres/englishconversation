@@ -2378,6 +2378,10 @@
         let barrosX = 0;
         let barrosY = 0;
 
+        // Mobile/Click touch-to-move target coordinates
+        let touchTargetX = null;
+        let touchTargetY = null;
+
         const keysPressed = {};
 
         // Disparado ao clicar em "Start"
@@ -2610,18 +2614,46 @@
             let dy = 0;
             const speed = 4.5;
 
+            // Check if any keyboard direction keys are pressed
+            const isKeyboardMoving = keysPressed['ArrowUp'] || keysPressed['w'] || keysPressed['W'] ||
+                                     keysPressed['ArrowDown'] || keysPressed['s'] || keysPressed['S'] ||
+                                     keysPressed['ArrowLeft'] || keysPressed['a'] || keysPressed['A'] ||
+                                     keysPressed['ArrowRight'] || keysPressed['d'] || keysPressed['D'];
+
+            if (isKeyboardMoving) {
+                // Keyboard overrides active touch targets
+                touchTargetX = null;
+                touchTargetY = null;
+            }
+
             if (!isTransitioning) {
-                if (keysPressed['ArrowUp'] || keysPressed['w'] || keysPressed['W']) {
-                    dy = -speed;
-                }
-                if (keysPressed['ArrowDown'] || keysPressed['s'] || keysPressed['S']) {
-                    dy = speed;
-                }
-                if (keysPressed['ArrowLeft'] || keysPressed['a'] || keysPressed['A']) {
-                    dx = -speed;
-                }
-                if (keysPressed['ArrowRight'] || keysPressed['d'] || keysPressed['D']) {
-                    dx = speed;
+                if (isKeyboardMoving) {
+                    if (keysPressed['ArrowUp'] || keysPressed['w'] || keysPressed['W']) {
+                        dy = -speed;
+                    }
+                    if (keysPressed['ArrowDown'] || keysPressed['s'] || keysPressed['S']) {
+                        dy = speed;
+                    }
+                    if (keysPressed['ArrowLeft'] || keysPressed['a'] || keysPressed['A']) {
+                        dx = -speed;
+                    }
+                    if (keysPressed['ArrowRight'] || keysPressed['d'] || keysPressed['D']) {
+                        dx = speed;
+                    }
+                } else if (touchTargetX !== null && touchTargetY !== null) {
+                    // Navigate towards touch/click target point (centered relative to group sprite size)
+                    const diffX = touchTargetX - (studentX + 40);
+                    const diffY = touchTargetY - (studentY + 30);
+                    const distance = Math.sqrt(diffX * diffX + diffY * diffY);
+
+                    if (distance > 6) {
+                        dx = (diffX / distance) * speed;
+                        dy = (diffY / distance) * speed;
+                    } else {
+                        // Close enough, reset target
+                        touchTargetX = null;
+                        touchTargetY = null;
+                    }
                 }
             }
 
@@ -2963,6 +2995,39 @@
         document.addEventListener('keyup', (event) => {
             keysPressed[event.key] = false;
         });
+
+        // Touch/Click to move on Gameplay Screen (Mobile Support)
+        const gameplayScreen = document.getElementById('gameplay-screen');
+        
+        function handleGameplayScreenClick(clientX, clientY, target) {
+            // Ignore if clicked on buttons or dialogue interface elements
+            if (
+                target.tagName.toLowerCase() === 'button' || 
+                target.closest('.barros-speech-bubble-container') ||
+                target.closest('#dialogue-box-container')
+            ) {
+                return;
+            }
+            
+            // Map click/touch coordinates relative to gameplay screen bounds
+            const bounds = gameplayScreen.getBoundingClientRect();
+            touchTargetX = clientX - bounds.left;
+            touchTargetY = clientY - bounds.top;
+        }
+
+        gameplayScreen.addEventListener('click', (event) => {
+            handleGameplayScreenClick(event.clientX, event.clientY, event.target);
+        });
+
+        gameplayScreen.addEventListener('touchstart', (event) => {
+            const touch = event.touches[0];
+            handleGameplayScreenClick(touch.clientX, touch.clientY, event.target);
+        }, { passive: true });
+
+        gameplayScreen.addEventListener('touchmove', (event) => {
+            const touch = event.touches[0];
+            handleGameplayScreenClick(touch.clientX, touch.clientY, event.target);
+        }, { passive: true });
     </script>
 
 </body>
