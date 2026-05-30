@@ -46,6 +46,7 @@
         #angland-game-container {
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             background: var(--sky-gradient);
             display: flex;
             justify-content: center;
@@ -416,6 +417,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             background-color: #000000;
             display: flex;
             justify-content: center;
@@ -528,6 +530,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             background-color: #2d6a4f;
             /* Emerald/Moss grass ground */
             background-image: radial-gradient(#1b4332 18%, transparent 19%);
@@ -1228,43 +1231,264 @@
         /* Responsive UI Scaling */
         @media (max-width: 768px) {
             .game-logo {
-                font-size: 2.8rem;
-                letter-spacing: 6px;
+                font-size: 2.5rem;
+                letter-spacing: 4px;
             }
 
             .start-button {
-                font-size: 1.2rem;
-                padding: 15px 40px;
+                font-size: 1.1rem;
+                padding: 12px 30px;
             }
 
             .scenic-sun {
-                width: 180px;
-                height: 180px;
+                width: 150px;
+                height: 150px;
             }
 
             .logo-bloom-back {
-                width: 320px;
-                height: 120px;
+                width: 260px;
+                height: 100px;
             }
 
             .subtitle-text {
-                font-size: 0.8rem;
-                line-height: 2.2;
+                font-size: 0.75rem;
+                line-height: 2.0;
             }
 
             .dirt-road {
-                width: 180px;
+                width: 160px;
             }
 
+            /* --- Gameplay RPG Dialogue Screen --- */
             #dialogue-box-container {
-                height: 200px;
-                flex-direction: column;
-                gap: 10px;
+                bottom: 15px;
+                width: 95%;
+                height: auto;
+                max-height: 220px;
+                padding: 10px 15px;
+                gap: 5px;
             }
 
             .dialogue-portrait {
                 display: none;
                 /* Hide portrait on small screens to save space */
+            }
+
+            .dialogue-content {
+                font-size: 0.62rem;
+                line-height: 1.6;
+            }
+
+            .dialogue-text {
+                height: auto;
+                max-height: 100px;
+                overflow-y: auto;
+            }
+
+            .dialogue-footer {
+                margin-top: 5px;
+                font-size: 0.5rem;
+            }
+
+            .dialogue-next-btn {
+                padding: 5px 10px;
+                font-size: 0.5rem;
+            }
+
+            /* --- Retro Practice Screen --- */
+            #lesson-practice-screen {
+                padding: 15px 10px 10px 10px;
+                justify-content: space-between;
+            }
+
+            .practice-title {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .practice-progress {
+                font-size: 0.6rem;
+            }
+
+            .practice-bar-outer {
+                height: 8px;
+            }
+
+            .practice-stage {
+                padding-bottom: 10px;
+                margin-top: 10px;
+            }
+
+            .character-holder {
+                width: 80px;
+            }
+
+            .visual-novel-avatar {
+                transform: scale(2.4);
+                margin-bottom: 20px;
+            }
+
+            .character-tag {
+                font-size: 0.55rem;
+                padding: 4px 8px;
+                border-width: 1.5px;
+                border-radius: 4px;
+            }
+
+            #practice-dialogue-center {
+                width: 90%;
+                max-width: 320px;
+                gap: 8px;
+                top: 42%;
+            }
+
+            .center-speech-box {
+                padding: 8px 12px;
+                border-width: 2.5px;
+                border-radius: 8px;
+                box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3);
+            }
+
+            .speech-speaker-label {
+                font-size: 0.5rem;
+                margin-bottom: 4px;
+                padding: 2px 6px;
+            }
+
+            .speech-text-en {
+                font-size: 0.62rem;
+                line-height: 1.4;
+            }
+
+            .speech-text-pt {
+                font-size: 0.5rem;
+                line-height: 1.3;
+                margin-top: 4px;
+                padding-top: 4px;
+            }
+
+            .repetition-banner {
+                font-size: 0.6rem;
+                padding: 6px 12px;
+                border-width: 2px;
+            }
+
+            .turma-speech-bubble-container {
+                width: 90%;
+                max-width: 320px;
+                padding: 12px;
+                border-width: 2.5px;
+                border-radius: 8px;
+                box-shadow: 0 0 15px rgba(6, 214, 160, 0.3), 3px 3px 0px rgba(0, 0, 0, 0.3);
+                top: 42%;
+            }
+
+            .turma-bubble-title {
+                font-size: 0.5rem;
+                margin-bottom: 4px;
+            }
+
+            .turma-bubble-text {
+                font-size: 0.62rem;
+                line-height: 1.4;
+            }
+
+            .turma-bubble-translation {
+                font-size: 0.5rem;
+                line-height: 1.3;
+                margin-top: 4px;
+                padding-top: 4px;
+            }
+
+            .practice-controls {
+                gap: 15px;
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+
+            .retro-control-btn {
+                font-size: 0.6rem;
+                padding: 8px 16px;
+                border-width: 2px;
+                border-radius: 6px;
+                box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+            }
+
+            .retro-control-btn:active {
+                transform: translate(1px, 1px);
+                box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.4);
+            }
+
+            /* --- Historical Scroll Screen --- */
+            #historical-scroll-screen {
+                padding: 10px;
+            }
+
+            .scroll-container {
+                height: 72vh;
+                height: 72dvh;
+                width: 98vw;
+            }
+
+            .scroll-paper {
+                padding: 15px;
+                border-left-width: 4px;
+                border-right-width: 4px;
+            }
+
+            .scroll-title {
+                font-size: 1.5rem;
+            }
+
+            .scroll-subtitle {
+                font-size: 0.45rem;
+                margin-bottom: 12px;
+            }
+
+            .scroll-body-content {
+                gap: 12px;
+            }
+
+            .scroll-columns-wrapper {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .scroll-section-title {
+                font-size: 0.8rem;
+                margin-bottom: 8px;
+            }
+
+            .transcript-line {
+                font-size: 0.58rem;
+                line-height: 1.6;
+                padding: 6px;
+            }
+
+            .grammar-card {
+                padding: 8px;
+            }
+
+            .grammar-card h3 {
+                font-size: 0.65rem;
+            }
+
+            .grammar-list li {
+                font-size: 0.55rem;
+                line-height: 1.4;
+            }
+
+            .scroll-finish-btn {
+                font-size: 0.65rem;
+                padding: 10px 20px;
+                margin-top: 15px;
+                border-width: 2.5px;
+                box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
+            }
+
+            .scroll-finish-btn:active {
+                transform: translate(1px, 1px);
+                box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
             }
         }
 
@@ -1277,6 +1501,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             background-color: #1a1a2e;
             /* Slate/Midnight blue */
             background-image:
@@ -1642,6 +1867,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
+            height: 100dvh;
             background-color: #0f0f1b;
             background-image:
                 radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 0),
