@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Lesson 07: Higher or Lower - Guessing Game</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ── Core Design Tokens & Reset ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    :root {
+      --bg-soft: #FBFBFA;
+      --text-dark: #1C1C1C;
+      --text-muted: #666660;
+      --primary-green: #1E3F20;
+      --primary-green-hover: #2D5A27;
+      --accent-coral: #C94A4A;
+      --accent-coral-soft: #FDF2F2;
+      --accent-gray: #E5E5E0;
+      --accent-gray-light: #F2F2EE;
+      --white: #FFFFFF;
+      --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.03), 0 2px 8px rgba(0, 0, 0, 0.02);
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      height: 100dvh;
+      background-color: var(--bg-soft);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      color: var(--text-dark);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Prevent text selection */
+    body {
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      background: var(--white);
+      border-bottom: 1px solid var(--accent-gray);
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .back-button {
+      background: none;
+      border: none;
+      color: var(--text-dark);
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      transition: var(--transition-smooth);
+      text-decoration: none;
+    }
+
+    .back-button:hover, .back-button:active {
+      background: var(--accent-gray-light);
+    }
+
+    .header-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--primary-green);
+    }
+
+    .restart-button {
+      background: none;
+      border: 1.5px solid var(--accent-gray);
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition-smooth);
+    }
+
+    .restart-button:hover, .restart-button:active {
+      background: var(--accent-gray-light);
+      color: var(--text-dark);
+      border-color: var(--text-dark);
+    }
+
+    /* ── Main Layout ── */
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    /* ── App Views / States ── */
+    .game-view {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .game-view.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Typography & Headers inside screens */
+    .section-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--primary-green);
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .view-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      text-align: center;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    .view-description {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    /* ── STATE 1: RANGE SELECTION ── */
+    .difficulty-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: 100%;
+    }
+
+    .difficulty-card {
+      background: var(--white);
+      border: 2px solid var(--accent-gray);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: var(--transition-smooth);
+      text-align: left;
+    }
+
+    .difficulty-card:hover {
+      border-color: var(--primary-green);
+      transform: translateY(-2px);
+      box-shadow: var(--card-shadow);
+    }
+
+    .difficulty-card:active {
+      transform: translateY(0);
+    }
+
+    .level-badge {
+      background: var(--accent-gray-light);
+      color: var(--primary-green);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: inline-block;
+    }
+
+    .level-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .level-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .level-arrow {
+      font-size: 1.4rem;
+      color: var(--accent-gray);
+      transition: var(--transition-smooth);
+    }
+
+    .difficulty-card:hover .level-arrow {
+      color: var(--primary-green);
+      transform: translateX(4px);
+    }
+
+    /* ── STATE 2: SETUP SCREEN ── */
+    .setup-form {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      width: 100%;
+      margin-bottom: 20px;
+    }
+
+    .input-container {
+      position: relative;
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .input-field {
+      width: 100%;
+      height: 52px;
+      background: var(--accent-gray-light);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      padding: 0 16px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      text-align: center;
+      transition: var(--transition-smooth);
+      outline: none;
+    }
+
+    .input-field:focus {
+      background: var(--white);
+      border-color: var(--primary-green);
+      box-shadow: 0 0 0 3px rgba(30, 63, 32, 0.1);
+    }
+
+    .input-field::placeholder {
+      font-weight: 400;
+      color: #A0A09B;
+    }
+
+    .toggle-visibility-btn {
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .error-message {
+      color: var(--accent-coral);
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      min-height: 20px;
+      opacity: 0;
+      transition: var(--transition-smooth);
+    }
+
+    .error-message.visible {
+      opacity: 1;
+    }
+
+    /* Base Buttons */
+    .btn {
+      width: 100%;
+      height: 52px;
+      border-radius: 14px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition-smooth);
+      box-shadow: 0 4px 12px rgba(30, 63, 32, 0.15);
+    }
+
+    .btn-green {
+      background: var(--primary-green);
+      color: var(--white);
+    }
+
+    .btn-green:hover, .btn-green:active {
+      background: var(--primary-green-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-green:active {
+      transform: translateY(0);
+    }
+
+    /* Shake animation for validation errors */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+
+    .shake {
+      animation: shake 0.35s ease-in-out;
+    }
+
+    /* ── STATE 3: GAMEPLAY SCREEN ── */
+    .gameplay-header-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    /* Visual Attempt Tracker */
+    .attempts-tracker {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin: 8px 0 16px;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .life-token {
+      font-size: 1.3rem;
+      line-height: 1;
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease, filter 0.4s ease;
+    }
+
+    .life-token.lost {
+      transform: scale(0.85);
+      opacity: 0.2;
+      filter: grayscale(100%);
+    }
+
+    /* Dynamic Helper (The Interval Funnel) */
+    .funnel-container {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 16px 20px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      width: 100%;
+      margin-bottom: 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .funnel-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .funnel-range-display {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--primary-green);
+      letter-spacing: -0.5px;
+      margin-bottom: 12px;
+    }
+
+    /* Visual slider funnel track */
+    .funnel-track {
+      width: 100%;
+      height: 6px;
+      background: var(--accent-gray-light);
+      border-radius: 3px;
+      position: relative;
+      overflow: hidden;
+      margin: 8px 0;
+    }
+
+    .funnel-bar {
+      position: absolute;
+      top: 0;
+      height: 100%;
+      background: var(--primary-green);
+      border-radius: 3px;
+      transition: left 0.4s ease, width 0.4s ease;
+    }
+
+    /* History Log */
+    .history-card {
+      background: var(--white);
+      border-radius: 16px;
+      border: 1px solid var(--accent-gray);
+      padding: 12px 16px;
+      width: 100%;
+      flex: 1;
+      min-height: 100px;
+      max-height: 140px;
+      overflow-y: auto;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column-reverse; /* Shows newest at top or bottom */
+      gap: 6px;
+    }
+
+    .history-item {
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 6px 10px;
+      background: var(--bg-soft);
+      border-radius: 8px;
+      animation: slideIn 0.3s ease forwards;
+    }
+
+    @keyframes slideIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .history-item.higher {
+      border-left: 3.5px solid var(--primary-green);
+    }
+
+    .history-item.lower {
+      border-left: 3.5px solid var(--accent-coral);
+    }
+
+    .history-item span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .arrow-icon {
+      font-size: 0.95rem;
+    }
+
+    .arrow-higher { color: var(--primary-green); }
+    .arrow-lower { color: var(--accent-coral); }
+
+    /* Manual Input Form State 3 */
+    .guess-form {
+      width: 100%;
+      margin-bottom: 14px;
+    }
+
+    /* Language Scaffold Panel */
+    .scaffold-card {
+      background: #F4F4F0;
+      border-radius: 12px;
+      padding: 12px 16px;
+      width: 100%;
+      text-align: left;
+    }
+
+    .scaffold-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--primary-green);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .scaffold-row {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 12px;
+      font-size: 0.8rem;
+      line-height: 1.4;
+      color: var(--text-dark);
+    }
+
+    .scaffold-col-title {
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .scaffold-phrase {
+      font-style: italic;
+      color: var(--text-dark);
+      margin-bottom: 2px;
+    }
+
+    /* ── FEEDBACK OVERLAY (State 3 Intermediary Modal) ── */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      height: 100dvh;
+      background: rgba(30, 63, 32, 0.98); /* Solid Forest Green backdrop */
+      color: var(--white);
+      z-index: 100;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .overlay.active {
+      display: flex;
+      opacity: 1;
+    }
+
+    .overlay-speaker-prompt {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #9EC09E;
+      margin-bottom: 20px;
+    }
+
+    .overlay-clue {
+      font-size: 2.6rem;
+      font-weight: 900;
+      letter-spacing: -1px;
+      line-height: 1.1;
+      margin-bottom: 8px;
+      animation: popScale 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .overlay-translation {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: #D2E4D2;
+      font-style: italic;
+      margin-bottom: 40px;
+    }
+
+    .overlay-details {
+      font-size: 0.95rem;
+      color: #E2EFE2;
+      max-width: 280px;
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
+
+    .overlay-details strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--primary-green);
+      max-width: 260px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-white:hover, .btn-white:active {
+      background: #F0F6F0;
+      transform: translateY(-1px);
+    }
+
+    @keyframes popScale {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    /* ── STATE 4: ENDGAME SCREEN ── */
+    .endgame-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 24px;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(0, 0, 0, 0.02);
+      width: 100%;
+      text-align: center;
+      margin-bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .endgame-badge {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .win-badge {
+      background: #E8F5E9;
+      color: #2D5A27;
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.1);
+    }
+
+    .lose-badge {
+      background: var(--accent-coral-soft);
+      color: var(--accent-coral);
+      box-shadow: 0 4px 10px rgba(201, 74, 74, 0.1);
+    }
+
+    .endgame-result {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 8px;
+    }
+
+    .endgame-result.win {
+      color: var(--primary-green);
+    }
+
+    .endgame-result.lose {
+      color: var(--accent-coral);
+    }
+
+    .endgame-reveal {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+      margin-bottom: 24px;
+    }
+
+    .endgame-reveal strong {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      display: block;
+      margin-top: 4px;
+      letter-spacing: -0.5px;
+    }
+
+    .stats-container {
+      width: 100%;
+      border-top: 1px solid var(--accent-gray-light);
+      padding-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .stat-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Helper hidden classes */
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Game Header -->
+  <header>
+    <div class="header-left">
+      <a href="../index.html" class="back-button" title="Back to lessons">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+      <span class="header-title">Higher or Lower</span>
+    </div>
+    <button class="restart-button" id="btnRestart" onclick="resetGameToStart()">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+      </svg>
+      Restart
+    </button>
+  </header>
+
+  <!-- Main Game Box -->
+  <main>
+
+    <!-- STATE 1: DIFFICULTY SELECTION -->
+    <section id="view-selection" class="game-view active">
+      <div class="section-label">Practice Numbers</div>
+      <h1 class="view-title">Higher or Lower</h1>
+      <p class="view-description">Choose a level. The higher the level, the more range you cover, and the cleaner your guessing logic must be!</p>
+      
+      <div class="difficulty-cards">
+        <button class="difficulty-card" onclick="selectDifficulty(1)">
+          <div>
+            <span class="level-badge">Level 1</span>
+            <div class="level-title">1 to 100</div>
+            <div class="level-sub">Max attempts: 7</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </button>
+
+        <button class="difficulty-card" onclick="selectDifficulty(2)">
+          <div>
+            <span class="level-badge" style="background:#E3F2FD; color:#1565C0;">Level 2</span>
+            <div class="level-title">100 to 1,000</div>
+            <div class="level-sub">Max attempts: 10</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </button>
+
+        <button class="difficulty-card" onclick="selectDifficulty(3)">
+          <div>
+            <span class="level-badge" style="background:#FCE4EC; color:#C62828;">Level 3</span>
+            <div class="level-title">1,000 to 10,000</div>
+            <div class="level-sub">Max attempts: 14</div>
+          </div>
+          <div class="level-arrow">→</div>
+        </button>
+      </div>
+    </section>
+
+    <!-- STATE 2: PLAYER 1 SETUP -->
+    <section id="view-setup" class="game-view">
+      <div class="section-label">Player 1 Set</div>
+      <h1 class="view-title">Enter Secret Number</h1>
+      <p class="view-description" id="setup-instructions">Enter a number between 1 and 100. Keep it hidden from Player 2!</p>
+      
+      <div class="setup-form" id="setup-form-box">
+        <div class="input-container">
+          <input 
+            type="password" 
+            id="secret-input" 
+            class="input-field" 
+            placeholder="••••••" 
+            inputmode="numeric" 
+            pattern="[0-9]*" 
+            autocomplete="off"
+            oninput="cleanInput(this)"
+            onkeydown="handleSetupKeydown(event)"
+          >
+          <button class="toggle-visibility-btn" type="button" onclick="toggleSecretVisibility()" id="btn-toggle-visibility" title="Show/Hide number">
+            <svg width="20" height="20" id="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </button>
+        </div>
+        <div class="error-message" id="setup-error">Must be an integer between X and Y</div>
+      </div>
+      
+      <button class="btn btn-green" onclick="confirmSecretNumber()">
+        Set Secret & Pass Phone
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </button>
+    </section>
+
+    <!-- STATE 3: GAMEPLAY -->
+    <section id="view-gameplay" class="game-view">
+      
+      <div class="gameplay-header-container">
+        <div class="section-label">Player 2 Guesses</div>
+        <h2 class="view-title" style="font-size:1.5rem; margin-bottom:4px;">Guess the Number!</h2>
+        
+        <!-- Attempts Token Tracker -->
+        <div class="attempts-tracker" id="attempts-container">
+          <!-- Dynamically populated circles -->
+        </div>
+      </div>
+
+      <!-- Dynamic Helper Funnel displaying boundaries -->
+      <div class="funnel-container">
+        <div class="funnel-label">Current Valid Range</div>
+        <div class="funnel-range-display" id="funnel-range-text">1 to 100</div>
+        
+        <!-- Funnel bar animation -->
+        <div class="funnel-track">
+          <div class="funnel-bar" id="funnel-bar"></div>
+        </div>
+      </div>
+
+      <!-- Scrollable History Log -->
+      <div class="history-card" id="history-log">
+        <!-- Guesses populated here -->
+      </div>
+
+      <!-- Submit Form for Player 2 -->
+      <div class="guess-form" id="guess-form-box">
+        <div class="input-container" style="margin-bottom: 8px;">
+          <input 
+            type="text" 
+            id="guess-input" 
+            class="input-field" 
+            placeholder="Type your guess..." 
+            inputmode="numeric" 
+            pattern="[0-9]*" 
+            autocomplete="off"
+            oninput="cleanInput(this)"
+            onkeydown="handleGuessKeydown(event)"
+          >
+        </div>
+        <div class="error-message" id="guess-error" style="margin-bottom: 8px;">Please enter a valid guess</div>
+        
+        <button class="btn btn-green" id="btn-submit-guess" onclick="submitGuess()">
+          Submit Guess
+        </button>
+      </div>
+
+      <!-- Speaking scaffolding cheat card -->
+      <div class="scaffold-card">
+        <div class="scaffold-title">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+          English Practice Scaffold
+        </div>
+        <div class="scaffold-row">
+          <div>
+            <div class="scaffold-col-title">Guesser (Player 2)</div>
+            <div class="scaffold-phrase">"Is it [number]?"</div>
+            <div class="scaffold-phrase">"I think it's..."</div>
+          </div>
+          <div>
+            <div class="scaffold-col-title">Setter (Player 1)</div>
+            <div class="scaffold-phrase">"No, it's HIGHER!" ⬆️</div>
+            <div class="scaffold-phrase">"No, it's LOWER!" ⬇️</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- STATE 4: ENDGAME -->
+    <section id="view-endgame" class="game-view">
+      <div class="endgame-card">
+        <div class="endgame-badge" id="endgame-icon-container">
+          🎉
+        </div>
+        <h1 class="endgame-result" id="endgame-title">Correct!</h1>
+        <div class="endgame-reveal" id="endgame-reveal-text">
+          The secret number was:
+          <strong id="endgame-number">42</strong>
+        </div>
+        
+        <div class="stats-container">
+          <div class="stat-item" style="border-right: 1px solid var(--accent-gray-light);">
+            <div class="stat-val" id="stat-attempts-used">5</div>
+            <div class="stat-lbl">Guesses Used</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val" id="stat-attempts-max">10</div>
+            <div class="stat-lbl">Max Available</div>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn btn-green" onclick="resetGameToStart()">
+        Play New Round
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+        </svg>
+      </button>
+    </section>
+
+  </main>
+
+  <!-- INTERMEDIARY LINGUISTIC FEEDBACK OVERLAY -->
+  <div class="overlay" id="feedback-overlay">
+    <div class="overlay-speaker-prompt">Player 1: Say out loud!</div>
+    <div class="overlay-clue" id="overlay-direction-text">NO, IT'S HIGHER!</div>
+    <div class="overlay-translation" id="overlay-translation-text">Não, é mais alto!</div>
+    
+    <div class="overlay-details">
+      Player 2 guessed <strong id="overlay-guess-val">50</strong>.<br>
+      The secret number is <strong id="overlay-clue-type">higher</strong>.
+    </div>
+
+    <button class="btn btn-white" id="btn-overlay-dismiss" onclick="dismissFeedback()">
+      Next Guess
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <!-- ── Game Logic Script ── -->
+  <script>
+    // ── Game Constants & Variables ──
+    let minRange = 1;
+    let maxRange = 100;
+    let maxAttempts = 7;
+
+    let secretNumber = null;
+    let currentMin = 1;
+    let currentMax = 100;
+    let attemptsRemaining = 7;
+    let attemptsUsed = 0;
+    let guessHistory = [];
+
+    // Temporary storage for overlay state
+    let lastGuessValue = 0;
+    let lastClueDirection = '';
+
+    // Elements cache
+    const viewSelection = document.getElementById('view-selection');
+    const viewSetup = document.getElementById('view-setup');
+    const viewGameplay = document.getElementById('view-gameplay');
+    const viewEndgame = document.getElementById('view-endgame');
+    
+    const secretInput = document.getElementById('secret-input');
+    const setupErrorText = document.getElementById('setup-error');
+    const setupInstructionsText = document.getElementById('setup-instructions');
+    
+    const guessInput = document.getElementById('guess-input');
+    const guessErrorText = document.getElementById('guess-error');
+    const attemptsContainer = document.getElementById('attempts-container');
+    const funnelRangeText = document.getElementById('funnel-range-text');
+    const funnelBar = document.getElementById('funnel-bar');
+    const historyLog = document.getElementById('history-log');
+
+    const feedbackOverlay = document.getElementById('feedback-overlay');
+    const overlayDirectionText = document.getElementById('overlay-direction-text');
+    const overlayTranslationText = document.getElementById('overlay-translation-text');
+    const overlayGuessVal = document.getElementById('overlay-guess-val');
+    const overlayClueType = document.getElementById('overlay-clue-type');
+    const btnOverlayDismiss = document.getElementById('btn-overlay-dismiss');
+
+    const endgameIconContainer = document.getElementById('endgame-icon-container');
+    const endgameTitle = document.getElementById('endgame-title');
+    const endgameNumber = document.getElementById('endgame-number');
+    const endgameRevealText = document.getElementById('endgame-reveal-text');
+    const statAttemptsUsed = document.getElementById('stat-attempts-used');
+    const statAttemptsMax = document.getElementById('stat-attempts-max');
+
+    // ── Input Handling & Zoom Prevention ──
+    function cleanInput(input) {
+      // Remove all non-digits from input fields
+      input.value = input.value.replace(/\D/g, '');
+    }
+
+    function toggleSecretVisibility() {
+      const type = secretInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      secretInput.setAttribute('type', type);
+      
+      const eyeIcon = document.getElementById('eye-icon');
+      if (type === 'text') {
+        eyeIcon.innerHTML = `
+          <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        `;
+      } else {
+        eyeIcon.innerHTML = `
+          <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        `;
+      }
+    }
+
+    // ── Screen Transitions ──
+    function showView(targetView) {
+      const views = [viewSelection, viewSetup, viewGameplay, viewEndgame];
+      views.forEach(v => {
+        if (v === targetView) {
+          v.classList.add('active');
+          v.style.display = 'flex';
+        } else {
+          v.classList.remove('active');
+          v.style.display = 'none';
+        }
+      });
+      // Scroll to top of main container when switching screens
+      document.querySelector('main').scrollTop = 0;
+    }
+
+    // ── State 1: Selection ──
+    function selectDifficulty(level) {
+      if (level === 1) {
+        minRange = 1;
+        maxRange = 100;
+        maxAttempts = 7;
+      } else if (level === 2) {
+        minRange = 100;
+        maxRange = 1000;
+        maxAttempts = 10;
+      } else if (level === 3) {
+        minRange = 1000;
+        maxRange = 10000;
+        maxAttempts = 14;
+      }
+
+      // Configure setup instructions
+      setupInstructionsText.innerHTML = `Player 1: Enter a secret number between <strong>${formatNum(minRange)}</strong> and <strong>${formatNum(maxRange)}</strong>.<br>(Keep it hidden from Player 2!)`;
+      setupErrorText.textContent = `Must be an integer between ${formatNum(minRange)} and ${formatNum(maxRange)}`;
+      setupErrorText.classList.remove('visible');
+      
+      // Clear previous inputs
+      secretInput.value = '';
+      secretInput.setAttribute('type', 'password');
+      document.getElementById('eye-icon').innerHTML = `
+        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      `;
+
+      showView(viewSetup);
+      setTimeout(() => secretInput.focus(), 350);
+    }
+
+    // ── State 2: Setup ──
+    function handleSetupKeydown(e) {
+      if (e.key === 'Enter') {
+        confirmSecretNumber();
+      }
+    }
+
+    function confirmSecretNumber() {
+      const value = parseInt(secretInput.value, 10);
+      
+      if (isNaN(value) || value < minRange || value > maxRange) {
+        // Show inline error
+        setupErrorText.classList.add('visible');
+        
+        // Shake the input card
+        const formBox = document.getElementById('setup-form-box');
+        formBox.classList.add('shake');
+        setTimeout(() => formBox.classList.remove('shake'), 400);
+        return;
+      }
+
+      // Secret is valid! Set initial game variables
+      secretNumber = value;
+      currentMin = minRange;
+      currentMax = maxRange;
+      attemptsRemaining = maxAttempts;
+      attemptsUsed = 0;
+      guessHistory = [];
+
+      // Setup Gameplay screen variables
+      funnelRangeText.textContent = `${formatNum(currentMin)} to ${formatNum(currentMax)}`;
+      updateFunnelVisual();
+      buildLifeTokens();
+      
+      // Clear History Log
+      historyLog.innerHTML = `<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; font-style: italic; width: 100%;">No guesses made yet</div>`;
+      guessInput.value = '';
+      guessErrorText.classList.remove('visible');
+
+      showView(viewGameplay);
+      setTimeout(() => guessInput.focus(), 350);
+    }
+
+    // ── State 3: Gameplay ──
+    function buildLifeTokens() {
+      attemptsContainer.innerHTML = '';
+      for (let i = 0; i < maxAttempts; i++) {
+        const token = document.createElement('div');
+        token.className = 'life-token';
+        token.id = `token-${i}`;
+        token.textContent = '❤️';
+        attemptsContainer.appendChild(token);
+      }
+    }
+
+    function updateFunnelVisual() {
+      // Calculate percentages relative to the initial difficulty range bounds
+      const span = maxRange - minRange;
+      if (span <= 0) return;
+
+      const currentSpan = currentMax - currentMin;
+      const leftPercent = ((currentMin - minRange) / span) * 100;
+      const widthPercent = (currentSpan / span) * 100;
+
+      funnelBar.style.left = `${leftPercent}%`;
+      funnelBar.style.width = `${widthPercent}%`;
+    }
+
+    function handleGuessKeydown(e) {
+      if (e.key === 'Enter') {
+        submitGuess();
+      }
+    }
+
+    function submitGuess() {
+      const guessVal = parseInt(guessInput.value, 10);
+      
+      if (isNaN(guessVal) || guessVal < minRange || guessVal > maxRange) {
+        guessErrorText.textContent = `Enter a number between ${formatNum(minRange)} and ${formatNum(maxRange)}`;
+        guessErrorText.classList.add('visible');
+        
+        const formBox = document.getElementById('guess-form-box');
+        formBox.classList.add('shake');
+        setTimeout(() => formBox.classList.remove('shake'), 400);
+        return;
+      }
+
+      // Check if guess is outside the already established valid helper boundaries
+      if (guessVal < currentMin || guessVal > currentMax) {
+        guessErrorText.textContent = `Logic Warning: Outside the current range of ${formatNum(currentMin)}–${formatNum(currentMax)}!`;
+        guessErrorText.classList.add('visible');
+        
+        const formBox = document.getElementById('guess-form-box');
+        formBox.classList.add('shake');
+        setTimeout(() => formBox.classList.remove('shake'), 400);
+        return;
+      }
+
+      // Guess is syntactically valid and logical
+      guessErrorText.classList.remove('visible');
+      attemptsUsed++;
+      attemptsRemaining--;
+
+      if (guessVal === secretNumber) {
+        // Player wins immediately!
+        triggerEndgame(true);
+      } else {
+        // Incorrect guess: determine direction
+        let direction = '';
+        let translation = '';
+        
+        if (guessVal < secretNumber) {
+          direction = 'HIGHER';
+          translation = 'Não, é mais ALTO!';
+          currentMin = Math.max(currentMin, guessVal + 1);
+        } else {
+          direction = 'LOWER';
+          translation = 'Não, é mais BAIXO!';
+          currentMax = Math.min(currentMax, guessVal - 1);
+        }
+
+        // Cache parameters to render in overlay
+        lastGuessValue = guessVal;
+        lastClueDirection = direction;
+
+        // Populate overlay details
+        overlayDirectionText.textContent = `NO, IT'S ${direction}!`;
+        overlayTranslationText.textContent = translation;
+        overlayGuessVal.textContent = formatNum(guessVal);
+        overlayClueType.textContent = direction.toLowerCase();
+
+        // Color coding overlay styling depending on outcome
+        if (direction === 'HIGHER') {
+          feedbackOverlay.style.background = 'rgba(30, 63, 32, 0.98)'; // Forest Green
+          overlayDirectionText.style.color = '#FFFFFF';
+        } else {
+          feedbackOverlay.style.background = 'rgba(28, 28, 28, 0.98)'; // Charcoal Dark
+          overlayDirectionText.style.color = '#F28B82'; // Soft reddish
+        }
+
+        // If no attempts remain, this was the final wrong guess
+        if (attemptsRemaining === 0) {
+          btnOverlayDismiss.innerHTML = `
+            Reveal Results
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          `;
+        } else {
+          btnOverlayDismiss.innerHTML = `
+            Next Guess
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          `;
+        }
+
+        // Display feedback overlay
+        feedbackOverlay.style.display = 'flex';
+        // Allow rendering then fade in
+        setTimeout(() => feedbackOverlay.classList.add('active'), 20);
+      }
+    }
+
+    function dismissFeedback() {
+      // Hide feedback overlay
+      feedbackOverlay.classList.remove('active');
+      setTimeout(() => {
+        feedbackOverlay.style.display = 'none';
+      }, 300);
+
+      // Consume life token visually
+      const tokenIndex = attemptsUsed - 1;
+      const token = document.getElementById(`token-${tokenIndex}`);
+      if (token) {
+        token.classList.add('lost');
+      }
+
+      // Add to history log list
+      if (guessHistory.length === 0) {
+        historyLog.innerHTML = '';
+      }
+
+      const historyItem = document.createElement('div');
+      const arrowSign = lastClueDirection === 'HIGHER' ? '⬆️' : '⬇️';
+      const cssClass = lastClueDirection === 'HIGHER' ? 'higher' : 'lower';
+      
+      historyItem.className = `history-item ${cssClass}`;
+      historyItem.innerHTML = `
+        <span>Guess ${attemptsUsed}: <strong>${formatNum(lastGuessValue)}</strong></span>
+        <span class="arrow-icon ${lastClueDirection === 'HIGHER' ? 'arrow-higher' : 'arrow-lower'}">${arrowSign} ${lastClueDirection}</span>
+      `;
+      historyLog.appendChild(historyItem);
+      guessHistory.push({ guess: lastGuessValue, dir: lastClueDirection });
+
+      // Update funnel numbers and range visual
+      funnelRangeText.textContent = `${formatNum(currentMin)} to ${formatNum(currentMax)}`;
+      updateFunnelVisual();
+
+      // Check if game over condition triggered
+      if (attemptsRemaining === 0) {
+        triggerEndgame(false);
+      } else {
+        guessInput.value = '';
+        guessInput.focus();
+      }
+    }
+
+    // ── State 4: Endgame ──
+    function triggerEndgame(isWin) {
+      if (isWin) {
+        endgameIconContainer.className = 'endgame-badge win-badge';
+        endgameIconContainer.textContent = '🎉';
+        endgameTitle.className = 'endgame-result win';
+        endgameTitle.textContent = 'Correct! You Found It!';
+        
+        endgameRevealText.innerHTML = `The secret number was: <strong id="endgame-number">${formatNum(secretNumber)}</strong>`;
+        
+        statAttemptsUsed.textContent = attemptsUsed;
+        statAttemptsMax.textContent = maxAttempts;
+      } else {
+        endgameIconContainer.className = 'endgame-badge lose-badge';
+        endgameIconContainer.textContent = '❌';
+        endgameTitle.className = 'endgame-result lose';
+        endgameTitle.textContent = 'Game Over!';
+        
+        endgameRevealText.innerHTML = `The secret number was: <strong id="endgame-number" style="color:var(--accent-coral);">${formatNum(secretNumber)}</strong>`;
+        
+        statAttemptsUsed.textContent = maxAttempts;
+        statAttemptsMax.textContent = maxAttempts;
+      }
+
+      // Transition to final view
+      showView(viewEndgame);
+    }
+
+    function resetGameToStart() {
+      secretNumber = null;
+      guessHistory = [];
+      showView(viewSelection);
+    }
+
+    // Helper utility to add digit formatting for numbers (e.g. 1,000 instead of 1000)
+    function formatNum(num) {
+      return num.toLocaleString('en-US');
+    }
+  </script>
+</body>
+</html>
