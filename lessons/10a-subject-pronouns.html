@@ -376,11 +376,19 @@
       }
 
       .hw-content-pane {
-        height: calc(100vh - 240px) !important;
-        max-height: calc(100vh - 240px) !important;
-        overflow-y: auto !important;
-        padding-right: 8px !important;
-        padding-bottom: 30px !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        padding-right: 0 !important;
+        padding-bottom: 80px !important;
+      }
+
+      #s8, #s_qr {
+        justify-content: flex-start !important;
+      }
+
+      .forms-container {
+        gap: 20px !important;
       }
     }
 
@@ -783,7 +791,7 @@
     <!-- SLIDE 8: Forms QR Code Slide -->
     <div class="slide" id="s8" style="align-items: center; justify-content: center; text-align: center;">
       <div class="label" style="margin-bottom: 24px;">Formulários da Aula</div>
-      <div style="display: flex; gap: 40px; justify-content: center; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; width: 100%;">
+      <div class="forms-container" style="display: flex; gap: 40px; justify-content: center; align-items: flex-start; margin-bottom: 20px; flex-wrap: wrap; width: 100%;">
         <!-- Aula QR Code -->
         <div style="background: white; padding: 24px; border-radius: 12px; box-shadow: 0 8px 30px rgba(28, 26, 23, 0.08); text-align: center; width: 250px;">
           <div style="font-family: var(--sans); font-size: 14px; color: var(--highlight-secondary); font-weight: 600; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 0.05em;">Formulário de Aula</div>
