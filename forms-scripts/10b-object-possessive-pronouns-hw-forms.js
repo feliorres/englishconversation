@@ -1,6 +1,6 @@
 function criarFormularioObjectPossessivePronounsHW() {
   // 1. Cria o formulário e define o título
-  var form = FormApp.create('Lição de Casa: Object and Possessive Pronouns (Aula 10B)');
+  var form = FormApp.create('10b - Lição de casa: Object and Possessive Pronouns');
   
   // 2. Configura como TESTE (Quiz)
   form.setIsQuiz(true);
@@ -56,11 +56,11 @@ function criarFormularioObjectPossessivePronounsHW() {
 
   // --- GRUPO D: Tradução PT para EN (Questões 16 a 20) ---
   var dadosTraducaoPT_EN = [
-    {num: '16', pt: 'Eu o vejo.', voc: 'Eu = I | Vejo = see | O = him'},
-    {num: '17', pt: 'O livro é dela.', voc: 'O = the | Livro = book | É = is | Dela = hers'},
-    {num: '18', pt: 'Eles nos ajudam.', voc: 'Eles = they | Nos = us | Ajudam = help'},
-    {num: '19', pt: 'Este carro é meu.', voc: 'Este = this | Carro = car | É = is | Meu = mine'},
-    {num: '20', pt: 'Ela fala com eles.', voc: 'Ela = she | Fala com = talks to | Eles = them'}
+    {num: '16', pt: 'Eu o vejo.', voc: 'Eu = I | Vejo = see'},
+    {num: '17', pt: 'O livro é dela.', voc: 'O = the | Livro = book | É = is'},
+    {num: '18', pt: 'Eles nos ajudam.', voc: 'Eles = they | Ajudam = help'},
+    {num: '19', pt: 'Este carro é meu.', voc: 'Este = this | Carro = car | É = is'},
+    {num: '20', pt: 'Ela fala com eles.', voc: 'Ela = she | Fala com = talks to'}
   ];
 
   dadosTraducaoPT_EN.forEach(function(itemData) {
@@ -72,11 +72,11 @@ function criarFormularioObjectPossessivePronounsHW() {
 
   // --- GRUPO E: Tradução EN para PT (Questões 21 a 25) ---
   var dadosTraducaoEN_PT = [
-    {num: '21', en: 'This house is ours.', voc: 'This = esta | House = casa | Is = é | Ours = nossa'},
-    {num: '22', en: 'He calls me.', voc: 'He = ele | Calls = liga para | Me = mim'},
-    {num: '23', en: 'Is this yours?', voc: 'Is = é | This = isto/este | Yours = seu / de você'},
-    {num: '24', en: 'They give her a book.', voc: 'They = eles | Give = dão | Her = para ela | A = um | Book = livro'},
-    {num: '25', en: 'We know him.', voc: 'We = nós | Know = conhecemos | Him = ele'}
+    {num: '21', en: 'This house is ours.', voc: 'This = esta | House = casa | Is = é'},
+    {num: '22', en: 'He calls me.', voc: 'He = ele | Calls = liga para'},
+    {num: '23', en: 'Is this yours?', voc: 'Is = é | This = isto/este'},
+    {num: '24', en: 'They give her a book.', voc: 'They = eles | Give = dão | A = um | Book = livro'},
+    {num: '25', en: 'We know him.', voc: 'We = nós | Know = conhecemos'}
   ];
 
   dadosTraducaoEN_PT.forEach(function(itemData) {

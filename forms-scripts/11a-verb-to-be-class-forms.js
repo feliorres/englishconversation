@@ -1,5 +1,5 @@
 function criarFormularioVerbToBeClass() {
-  var form = FormApp.create('Atividades de Aula: Verb to be (Aula 11A)');
+  var form = FormApp.create('11a - Aula: Verb to be');
   form.setIsQuiz(true);
   form.setDescription('Responda com atenção às questões praticadas em sala de aula.');
 
@@ -53,11 +53,11 @@ function criarFormularioVerbToBeClass() {
 
   // --- GRUPO D: Tradução PT para EN (Questões 16 a 20) ---
   var dadosTraducaoPT_EN = [
-    {num: '16', pt: 'Eu sou feliz.', voc: 'Eu = I | Sou = am | Feliz = happy'},
-    {num: '17', pt: 'Ele está no carro.', voc: 'Ele = He | Está = is | No = in the | Carro = car'},
-    {num: '18', pt: 'Nós somos estudantes.', voc: 'Nós = We | Somos = are | Estudantes = students'},
-    {num: '19', pt: 'Ela é médica.', voc: 'Ela = She | É = is | Médica = a doctor'},
-    {num: '20', pt: 'Eles estão cansados.', voc: 'Eles = They | Estão = are | Cansados = tired'}
+    {num: '16', pt: 'Eu sou feliz.', voc: 'Eu = I | Feliz = happy'},
+    {num: '17', pt: 'Ele está no carro.', voc: 'Ele = He | No = in the | Carro = car'},
+    {num: '18', pt: 'Nós somos estudantes.', voc: 'Nós = We | Estudantes = students'},
+    {num: '19', pt: 'Ela é médica.', voc: 'Ela = She | Médica = a doctor'},
+    {num: '20', pt: 'Eles estão cansados.', voc: 'Eles = They | Cansados = tired'}
   ];
 
   dadosTraducaoPT_EN.forEach(function(itemData) {
@@ -69,11 +69,11 @@ function criarFormularioVerbToBeClass() {
 
   // --- GRUPO E: Tradução EN para PT (Questões 21 a 25) ---
   var dadosTraducaoEN_PT = [
-    {num: '21', en: 'You are here.', voc: 'You = você/vocês | Are = está/estão | Here = aqui'},
-    {num: '22', en: 'It is a cat.', voc: 'It = isto/ele | Is = é | A = um | Cat = gato'},
-    {num: '23', en: 'We are happy.', voc: 'We = nós | Are = somos/estamos | Happy = felizes'},
-    {num: '24', en: 'She is my sister.', voc: 'She = ela | Is = é | My = minha | Sister = irmã'},
-    {num: '25', en: 'They are at school.', voc: 'They = eles/elas | Are = estão | At school = na escola'}
+    {num: '21', en: 'You are here.', voc: 'You = você/vocês | Here = aqui'},
+    {num: '22', en: 'It is a cat.', voc: 'It = isto/ele | A = um | Cat = gato'},
+    {num: '23', en: 'We are happy.', voc: 'We = nós | Happy = felizes'},
+    {num: '24', en: 'She is my sister.', voc: 'She = ela | My = minha | Sister = irmã'},
+    {num: '25', en: 'They are at school.', voc: 'They = eles/elas | At school = na escola'}
   ];
 
   dadosTraducaoEN_PT.forEach(function(itemData) {

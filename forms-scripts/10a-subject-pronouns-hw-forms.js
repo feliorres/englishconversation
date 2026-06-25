@@ -1,6 +1,6 @@
 function criarFormularioSubjectPronounsHW() {
   // 1. Cria o formulário e define o título
-  var form = FormApp.create('Lição de Casa: Subject Pronouns (Aula 10A)');
+  var form = FormApp.create('10a - Lição de casa: Subject Pronouns (Pronomes Retos)');
   
   // 2. Configura como TESTE (Quiz)
   form.setIsQuiz(true);
@@ -56,11 +56,11 @@ function criarFormularioSubjectPronounsHW() {
 
   // --- GRUPO D: Tradução PT para EN (Questões 16 a 20) ---
   var dadosTraducaoPT_EN = [
-    {num: '16', pt: 'Nós estudamos inglês.', voc: 'Nós = We | Estudamos = study | Inglês = English'},
-    {num: '17', pt: 'Ele é feliz.', voc: 'Ele = He | É = is | Feliz = happy'},
-    {num: '18', pt: 'Elas jogam futebol.', voc: 'Elas = They | Jogam = play | Futebol = soccer'},
-    {num: '19', pt: 'Eu tenho um carro.', voc: 'Eu = I | Tenho = have | Um = a | Carro = car'},
-    {num: '20', pt: 'Você é meu amigo.', voc: 'Você = You | É = are | Meu = my | Amigo = friend'}
+    {num: '16', pt: 'Nós estudamos inglês.', voc: 'Estudamos = study | Inglês = English'},
+    {num: '17', pt: 'Ele é feliz.', voc: 'É = is | Feliz = happy'},
+    {num: '18', pt: 'Elas jogam futebol.', voc: 'Jogam = play | Futebol = soccer'},
+    {num: '19', pt: 'Eu tenho um carro.', voc: 'Tenho = have | Um = a | Carro = car'},
+    {num: '20', pt: 'Você é meu amigo.', voc: 'É = are | Meu = my | Amigo = friend'}
   ];
 
   dadosTraducaoPT_EN.forEach(function(itemData) {
@@ -72,11 +72,11 @@ function criarFormularioSubjectPronounsHW() {
 
   // --- GRUPO E: Tradução EN para PT (Questões 21 a 25) ---
   var dadosTraducaoEN_PT = [
-    {num: '21', en: 'It is a house.', voc: 'It = isto / ela | Is = é | A = uma | House = casa'},
-    {num: '22', en: 'She lives in Brazil.', voc: 'She = ela | Lives in = mora no / vive no'},
-    {num: '23', en: 'They are here.', voc: 'They = eles/elas | Are = estão | Here = aqui'},
-    {num: '24', en: 'We have a dog.', voc: 'We = nós | Have = temos | A = um | Dog = cachorro'},
-    {num: '25', en: 'He is a doctor.', voc: 'He = ele | Is = é | A = um | Doctor = médico'}
+    {num: '21', en: 'It is a house.', voc: 'Is = é | A = uma | House = casa'},
+    {num: '22', en: 'She lives in Brazil.', voc: 'Lives in = mora no / vive no'},
+    {num: '23', en: 'They are here.', voc: 'Are = estão | Here = aqui'},
+    {num: '24', en: 'We have a dog.', voc: 'Have = temos | A = um | Dog = cachorro'},
+    {num: '25', en: 'He is a doctor.', voc: 'Is = é | A = um | Doctor = médico'}
   ];
 
   dadosTraducaoEN_PT.forEach(function(itemData) {

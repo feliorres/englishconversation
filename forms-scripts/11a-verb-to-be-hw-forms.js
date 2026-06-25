@@ -1,5 +1,5 @@
 function criarFormularioVerbToBeHW() {
-  var form = FormApp.create('Lição de Casa: Verb to be (Aula 11A)');
+  var form = FormApp.create('11a - Lição de casa: Verb to be');
   form.setIsQuiz(true);
   form.setDescription('Responda com atenção às questões de dever de casa.');
 
@@ -53,11 +53,11 @@ function criarFormularioVerbToBeHW() {
 
   // --- GRUPO D: Tradução PT para EN (Questões 16 a 20) ---
   var dadosTraducaoPT_EN = [
-    {num: '16', pt: 'Está frio hoje.', voc: 'Está frio = It is cold | Hoje = today'},
-    {num: '17', pt: 'Você é um bom professor.', voc: 'Você = You | É = are | Um bom = a good | Professor = teacher'},
-    {num: '18', pt: 'Eles são amigos.', voc: 'Eles = They | São = are | Amigos = friends'},
-    {num: '19', pt: 'Nós estamos com fome.', voc: 'Nós estamos = We are | Com fome = hungry'},
-    {num: '20', pt: 'Ela está no trabalho.', voc: 'Ela = She | Está = is | No trabalho = at work'}
+    {num: '16', pt: 'Está frio hoje.', voc: 'Frio = cold | Hoje = today'},
+    {num: '17', pt: 'Você é um bom professor.', voc: 'Você = You | Um bom = a good | Professor = teacher'},
+    {num: '18', pt: 'Eles são amigos.', voc: 'Eles = They | Amigos = friends'},
+    {num: '19', pt: 'Nós estamos com fome.', voc: 'Nós = We | Com fome = hungry'},
+    {num: '20', pt: 'Ela está no trabalho.', voc: 'Ela = She | No trabalho = at work'}
   ];
 
   dadosTraducaoPT_EN.forEach(function(itemData) {
@@ -69,11 +69,11 @@ function criarFormularioVerbToBeHW() {
 
   // --- GRUPO E: Tradução EN para PT (Questões 21 a 25) ---
   var dadosTraducaoEN_PT = [
-    {num: '21', en: 'He is a pilot.', voc: 'He = ele | Is = é | A = um | Pilot = piloto'},
-    {num: '22', en: 'They are from Italy.', voc: 'They = eles | Are = são | From Italy = da Itália'},
-    {num: '23', en: 'We are ready.', voc: 'We = nós | Are = estamos | Ready = prontos'},
-    {num: '24', en: 'I am tired.', voc: 'I = eu | Am = estou | Tired = cansado'},
-    {num: '25', en: 'The sky is blue.', voc: 'The sky = o céu | Is = é | Blue = azul'}
+    {num: '21', en: 'He is a pilot.', voc: 'He = ele | A = um | Pilot = piloto'},
+    {num: '22', en: 'They are from Italy.', voc: 'They = eles | From Italy = da Itália'},
+    {num: '23', en: 'We are ready.', voc: 'We = nós | Ready = prontos'},
+    {num: '24', en: 'I am tired.', voc: 'I = eu | Tired = cansado'},
+    {num: '25', en: 'The sky is blue.', voc: 'The sky = o céu | Blue = azul'}
   ];
 
   dadosTraducaoEN_PT.forEach(function(itemData) {
