@@ -640,9 +640,10 @@
       <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
         <h1>Verb to be</h1>
         <p style="margin-top: 14px; font-size: 24px; color: var(--ink-soft);">O verbo Ser/Estar no Presente (A1)</p>
-        <div style="margin-top: 32px; display: flex; gap: 16px;">
-          <button class="nav-btn" onclick="jumpToSlide('a2')" style="border-radius: 4px; padding: 12px 24px; font-weight: 500;">📖 Conteúdo</button>
-          <button class="nav-btn" onclick="jumpToSlide('a7')" style="border-radius: 4px; padding: 12px 24px; font-weight: 500; background: var(--accent); color: var(--cream);">📝 Exercícios</button>
+        <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <button class="nav-btn" onclick="jumpToSlide('a2')" style="border-radius: 4px; padding: 12px 24px; font-weight: 500; background: var(--accent); color: var(--cream); border-color: var(--accent);">📖 Iniciar Conteúdo</button>
+          <a href="https://forms.gle/VaYdWnCCtvFBBrAY8" target="_blank" class="nav-btn" style="text-decoration: none; border-radius: 4px; padding: 12px 24px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center;">📝 Formulário de Aula</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSfzyEG0fQzDSAUq0hlDIH4ab54YHIi5p6xqEZm5n2U-84Mu7A/viewform?usp=header" target="_blank" class="nav-btn" style="text-decoration: none; border-radius: 4px; padding: 12px 24px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center;">🏠 Lição de Casa</a>
         </div>
       </div>
       <div class="slide-num">01</div>
@@ -759,123 +760,7 @@
       <div class="slide-num">—</div>
     </div>
 
-    <!-- SLIDE A7: Homework Panel -->
-    <div class="slide" id="a7">
-      <div class="label">Exercícios em Classe · Lesson 11A</div>
-      <h2>Exercícios Práticos</h2>
 
-      <div style="flex:1; display:flex; flex-direction:column; margin-top: 15px;">
-        <div class="hw-tabs">
-          <div class="hw-tabs-buttons" style="display: flex; gap: 15px;">
-            <button class="hw-tab-btn active" onclick="switchHwTab('a-fixacao')">15 Exercícios de Fixação</button>
-            <button class="hw-tab-btn" onclick="switchHwTab('a-traducao')">Exercício de Tradução</button>
-            <button class="hw-tab-btn" onclick="switchHwTab('a-gabarito')">🔑 Gabarito (Professor)</button>
-          </div>
-          <button class="vocab-btn" onclick="toggleVocabModal('a')">💡 Vocabulário Auxiliar</button>
-        </div>
-
-        <!-- Pane A: Fixation Exercises -->
-        <div id="hw-a-fixacao" class="hw-content-pane active" style="overflow-y: auto; max-height: 340px; padding-right: 15px;">
-          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--highlight-secondary);">A) Complete com "am", "is" ou "are" de acordo com o sujeito:</h3>
-          <ol style="margin-left: 20px; list-style-type: decimal; margin-bottom: 20px;">
-            <li class="hw-list-item">Carlos ______ a doctor.</li>
-            <li class="hw-list-item">You and I ______ friends.</li>
-            <li class="hw-list-item">The books ______ on the table.</li>
-            <li class="hw-list-item">Mary ______ a student.</li>
-            <li class="hw-list-item">The dog ______ white.</li>
-          </ol>
-
-          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--highlight-secondary);">B) Complete as lacunas com o verbo to be correto:</h3>
-          <ol style="margin-left: 20px; list-style-type: decimal; start: 6; margin-bottom: 20px;">
-            <li class="hw-list-item">I ______ hungry.</li>
-            <li class="hw-list-item">They ______ in the kitchen.</li>
-            <li class="hw-list-item">She ______ busy.</li>
-            <li class="hw-list-item">It ______ very hot today.</li>
-            <li class="hw-list-item">We ______ late.</li>
-          </ol>
-
-          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--highlight-secondary);">C) Responda com Verdadeiro ou Falso:</h3>
-          <ol style="margin-left: 20px; list-style-type: decimal; start: 11; margin-bottom: 10px;">
-            <li class="hw-list-item">"Am" é usado apenas com o pronome "I".</li>
-            <li class="hw-list-item">"Are" é a forma usada para singular e plural de "you".</li>
-            <li class="hw-list-item">"Is" é usado com "We".</li>
-            <li class="hw-list-item">"They" é conjugado com "is".</li>
-            <li class="hw-list-item">O verbo "to be" pode significar tanto "ser" quanto "estar".</li>
-          </ol>
-        </div>
-
-        <!-- Pane B: Translation Exercises -->
-        <div id="hw-a-traducao" class="hw-content-pane" style="overflow-y: auto; max-height: 340px; padding-right: 15px;">
-          <h4 style="font-size: 15px; font-weight: 600; color: var(--highlight-secondary); margin-bottom: 10px;">D) Traduzir para o Inglês:</h4>
-          <ol style="margin-left: 20px; list-style-type: decimal; margin-bottom: 20px;">
-            <li class="hw-list-item">Eu sou feliz.</li>
-            <li class="hw-list-item">Ele está no carro.</li>
-            <li class="hw-list-item">Nós somos estudantes.</li>
-            <li class="hw-list-item">Ela é médica.</li>
-            <li class="hw-list-item">Eles estão cansados.</li>
-          </ol>
-
-          <h4 style="font-size: 15px; font-weight: 600; color: var(--highlight-secondary); margin-bottom: 10px; margin-top: 15px;">E) Traduzir para o Português:</h4>
-          <ol style="margin-left: 20px; list-style-type: decimal; start: 6; margin-bottom: 20px;">
-            <li class="hw-list-item">You are here.</li>
-            <li class="hw-list-item">It is a cat.</li>
-            <li class="hw-list-item">We are happy.</li>
-            <li class="hw-list-item">She is my sister.</li>
-            <li class="hw-list-item">They are at school.</li>
-          </ol>
-        </div>
-
-        <!-- Pane C: Gabarito -->
-        <div id="hw-a-gabarito" class="hw-content-pane" style="overflow-y: auto; max-height: 340px; padding-right: 15px;">
-          <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--highlight);">Respostas dos Exercícios (Gabarito)</h3>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-              <h4 style="font-size: 14px; font-weight: 600; color: var(--highlight-secondary);">Blocos A, B e C</h4>
-              <ul style="margin-top: 5px; font-size: 14px;">
-                <li style="font-size:15px; margin-bottom: 5px;">1. is</li>
-                <li style="font-size:15px; margin-bottom: 5px;">2. are</li>
-                <li style="font-size:15px; margin-bottom: 5px;">3. are</li>
-                <li style="font-size:15px; margin-bottom: 5px;">4. is</li>
-                <li style="font-size:15px; margin-bottom: 5px;">5. is</li>
-                <li style="font-size:15px; margin-bottom: 5px;">6. am</li>
-                <li style="font-size:15px; margin-bottom: 5px;">7. are</li>
-                <li style="font-size:15px; margin-bottom: 5px;">8. is</li>
-                <li style="font-size:15px; margin-bottom: 5px;">9. is</li>
-                <li style="font-size:15px; margin-bottom: 5px;">10. are</li>
-                <li style="font-size:15px; margin-bottom: 5px;">11. Verdadeiro</li>
-                <li style="font-size:15px; margin-bottom: 5px;">12. Verdadeiro</li>
-                <li style="font-size:15px; margin-bottom: 5px;">13. Falso (is é com he/she/it)</li>
-                <li style="font-size:15px; margin-bottom: 5px;">14. Falso (they are)</li>
-                <li style="font-size:15px; margin-bottom: 5px;">15. Verdadeiro</li>
-              </ul>
-            </div>
-            <div>
-              <h4 style="font-size: 14px; font-weight: 600; color: var(--highlight-secondary);">Traduções (D e E)</h4>
-              <ul style="margin-top: 5px; font-size: 14px;">
-                <li style="font-size:15px; margin-bottom: 5px;">16. I am happy.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">17. He is in the car.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">18. We are students.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">19. She is a doctor.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">20. They are tired.</li>
-                <li style="font-size:15px; margin-bottom: 10px; border-bottom: 1px solid var(--rule);"></li>
-                <li style="font-size:15px; margin-bottom: 5px;">21. Você está aqui. / Vocês estão aqui.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">22. Isto é um gato. / Ele é um gato.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">23. Nós somos/estamos felizes.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">24. Ela é minha irmã.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">25. Eles estão na escola.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="slide-num">07</div>
-    </div>
-
-    <!-- Spacer A7 -->
-    <div class="slide slide-blank" id="ab7">
-      <div class="slide-num">—</div>
-    </div>
 
     <!-- SLIDE A8: Forms QR Code Slide -->
     <div class="slide" id="a8" style="align-items: center; justify-content: center; text-align: center;">
@@ -929,9 +814,10 @@
       <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
         <h1>To Be no Passado e Futuro</h1>
         <p style="margin-top: 14px; font-size: 24px; color: var(--ink-soft);">Was/Were &amp; Will be (A2-B1)</p>
-        <div style="margin-top: 32px; display: flex; gap: 16px;">
-          <button class="nav-btn" onclick="jumpToSlide('b2')" style="border-radius: 4px; padding: 12px 24px; font-weight: 500;">📖 Conteúdo</button>
-          <button class="nav-btn" onclick="jumpToSlide('b7')" style="border-radius: 4px; padding: 12px 24px; font-weight: 500; background: var(--accent); color: var(--cream);">📝 Exercícios</button>
+        <div style="margin-top: 32px; display: flex; gap: 16px; flex-wrap: wrap;">
+          <button class="nav-btn" onclick="jumpToSlide('b2')" style="border-radius: 4px; padding: 12px 24px; font-weight: 500; background: var(--accent); color: var(--cream); border-color: var(--accent);">📖 Iniciar Conteúdo</button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeC7ZCHotdMqnl6APYBKNQIixXMOrUEbmdpp8U_87IaqfHhtg/viewform?usp=header" target="_blank" class="nav-btn" style="text-decoration: none; border-radius: 4px; padding: 12px 24px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center;">📝 Formulário de Aula</a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSc0T4Anpmfn53p60cXW5TcyAh48BiGX8Iva7iWc7aIGz3WO8Q/viewform?usp=header" target="_blank" class="nav-btn" style="text-decoration: none; border-radius: 4px; padding: 12px 24px; font-weight: 500; display: inline-flex; align-items: center; justify-content: center;">🏠 Lição de Casa</a>
         </div>
       </div>
       <div class="slide-num">01</div>
@@ -1057,123 +943,7 @@
       <div class="slide-num">—</div>
     </div>
 
-    <!-- SLIDE B7: Homework Panel -->
-    <div class="slide" id="b7">
-      <div class="label">Exercícios em Classe · Lesson 11B</div>
-      <h2>Exercícios Práticos</h2>
 
-      <div style="flex:1; display:flex; flex-direction:column; margin-top: 15px;">
-        <div class="hw-tabs">
-          <div class="hw-tabs-buttons" style="display: flex; gap: 15px;">
-            <button class="hw-tab-btn active" onclick="switchHwTab('b-fixacao')">15 Exercícios de Fixação</button>
-            <button class="hw-tab-btn" onclick="switchHwTab('b-traducao')">Exercício de Tradução</button>
-            <button class="hw-tab-btn" onclick="switchHwTab('b-gabarito')">🔑 Gabarito (Professor)</button>
-          </div>
-          <button class="vocab-btn" onclick="toggleVocabModal('b')">💡 Vocabulário Auxiliar</button>
-        </div>
-
-        <!-- Pane A: Fixation Exercises -->
-        <div id="hw-b-fixacao" class="hw-content-pane active" style="overflow-y: auto; max-height: 340px; padding-right: 15px;">
-          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--highlight-secondary);">A) Complete com "was", "were" ou "will be" baseando-se no tempo (passado/futuro):</h3>
-          <ol style="margin-left: 20px; list-style-type: decimal; margin-bottom: 20px;">
-            <li class="hw-list-item">He ______ a child back then. <em>(passado)</em></li>
-            <li class="hw-list-item">They ______ at the party tomorrow. <em>(futuro)</em></li>
-            <li class="hw-list-item">We ______ tired after the match. <em>(passado)</em></li>
-            <li class="hw-list-item">She ______ at home last weekend. <em>(passado)</em></li>
-            <li class="hw-list-item">I ______ rich one day. <em>(futuro)</em></li>
-          </ol>
-
-          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--highlight-secondary);">B) Complete as lacunas com a forma correta do verbo to be:</h3>
-          <ol style="margin-left: 20px; list-style-type: decimal; start: 6; margin-bottom: 20px;">
-            <li class="hw-list-item">Yesterday, it ______ raining.</li>
-            <li class="hw-list-item">Tomorrow, they ______ on vacation.</li>
-            <li class="hw-list-item">You ______ very helpful last night.</li>
-            <li class="hw-list-item">I ______ surprised by the news.</li>
-            <li class="hw-list-item">Next month, we ______ in Paris.</li>
-          </ol>
-
-          <h3 style="font-size: 15px; margin-bottom: 12px; color: var(--highlight-secondary);">C) Responda com Verdadeiro ou Falso:</h3>
-          <ol style="margin-left: 20px; list-style-type: decimal; start: 11; margin-bottom: 10px;">
-            <li class="hw-list-item">"Was" é a forma do passado usada com "They".</li>
-            <li class="hw-list-item">"Will be" indica futuro e funciona para todas as pessoas.</li>
-            <li class="hw-list-item">"Were" é usado no passado com "You", "We" e "They".</li>
-            <li class="hw-list-item">No passado, "I" é acompanhado de "were".</li>
-            <li class="hw-list-item">O verbo "to be" no futuro necessita do auxiliar "will".</li>
-          </ol>
-        </div>
-
-        <!-- Pane B: Translation Exercises -->
-        <div id="hw-b-traducao" class="hw-content-pane" style="overflow-y: auto; max-height: 340px; padding-right: 15px;">
-          <h4 style="font-size: 15px; font-weight: 600; color: var(--highlight-secondary); margin-bottom: 10px;">D) Traduzir para o Inglês:</h4>
-          <ol style="margin-left: 20px; list-style-type: decimal; margin-bottom: 20px;">
-            <li class="hw-list-item">Eu estava em casa ontem.</li>
-            <li class="hw-list-item">Nós seremos médicos.</li>
-            <li class="hw-list-item">Eles eram muito amigos.</li>
-            <li class="hw-list-item">Amanhã estará ensolarado.</li>
-            <li class="hw-list-item">Ela era uma ótima professora.</li>
-          </ol>
-
-          <h4 style="font-size: 15px; font-weight: 600; color: var(--highlight-secondary); margin-bottom: 10px; margin-top: 15px;">E) Traduzir para o Português:</h4>
-          <ol style="margin-left: 20px; list-style-type: decimal; start: 6; margin-bottom: 20px;">
-            <li class="hw-list-item">We were very happy.</li>
-            <li class="hw-list-item">They will be late.</li>
-            <li class="hw-list-item">It was a beautiful day.</li>
-            <li class="hw-list-item">I will be at work tomorrow.</li>
-            <li class="hw-list-item">You were my best student.</li>
-          </ol>
-        </div>
-
-        <!-- Pane C: Gabarito -->
-        <div id="hw-b-gabarito" class="hw-content-pane" style="overflow-y: auto; max-height: 340px; padding-right: 15px;">
-          <h3 style="font-size: 16px; margin-bottom: 12px; color: var(--highlight);">Respostas dos Exercícios (Gabarito)</h3>
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div>
-              <h4 style="font-size: 14px; font-weight: 600; color: var(--highlight-secondary);">Blocos A, B e C</h4>
-              <ul style="margin-top: 5px; font-size: 14px;">
-                <li style="font-size:15px; margin-bottom: 5px;">1. was</li>
-                <li style="font-size:15px; margin-bottom: 5px;">2. will be</li>
-                <li style="font-size:15px; margin-bottom: 5px;">3. were</li>
-                <li style="font-size:15px; margin-bottom: 5px;">4. was</li>
-                <li style="font-size:15px; margin-bottom: 5px;">5. will be</li>
-                <li style="font-size:15px; margin-bottom: 5px;">6. was</li>
-                <li style="font-size:15px; margin-bottom: 5px;">7. will be</li>
-                <li style="font-size:15px; margin-bottom: 5px;">8. were</li>
-                <li style="font-size:15px; margin-bottom: 5px;">9. was</li>
-                <li style="font-size:15px; margin-bottom: 5px;">10. will be</li>
-                <li style="font-size:15px; margin-bottom: 5px;">11. Falso (they were)</li>
-                <li style="font-size:15px; margin-bottom: 5px;">12. Verdadeiro</li>
-                <li style="font-size:15px; margin-bottom: 5px;">13. Verdadeiro</li>
-                <li style="font-size:15px; margin-bottom: 5px;">14. Falso (I was)</li>
-                <li style="font-size:15px; margin-bottom: 5px;">15. Verdadeiro</li>
-              </ul>
-            </div>
-            <div>
-              <h4 style="font-size: 14px; font-weight: 600; color: var(--highlight-secondary);">Traduções (D e E)</h4>
-              <ul style="margin-top: 5px; font-size: 14px;">
-                <li style="font-size:15px; margin-bottom: 5px;">16. I was at home yesterday.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">17. We will be doctors.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">18. They were close friends.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">19. Tomorrow it will be sunny.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">20. She was a great teacher.</li>
-                <li style="font-size:15px; margin-bottom: 10px; border-bottom: 1px solid var(--rule);"></li>
-                <li style="font-size:15px; margin-bottom: 5px;">21. Nós éramos/estávamos muito felizes.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">22. Eles estarão atrasados.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">23. Foi um dia bonito.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">24. Eu estarei no trabalho amanhã.</li>
-                <li style="font-size:15px; margin-bottom: 5px;">25. Você era meu melhor aluno.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="slide-num">07</div>
-    </div>
-
-    <!-- Spacer B7 -->
-    <div class="slide slide-blank" id="bb7">
-      <div class="slide-num">—</div>
-    </div>
 
     <!-- SLIDE B8: Forms QR Code Slide -->
     <div class="slide" id="b8" style="align-items: center; justify-content: center; text-align: center;">
@@ -1205,58 +975,6 @@
     <button class="nav-btn" id="next" onclick="move(1)">Próximo →</button>
   </div>
 
-  <!-- Modal de Vocabulário Auxiliar - Parte A -->
-  <div id="vocab-modal-a" class="modal-overlay" onclick="closeVocabModalOnOutsideClick(event, 'a')">
-    <div class="modal-container">
-      <div class="modal-header">
-        <h3>Vocabulário Auxiliar · Presente</h3>
-        <button class="modal-close-btn" onclick="toggleVocabModal('a')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="vocab-grid">
-          <div class="vocab-item"><span class="vocab-en">happy</span><span class="vocab-pt">feliz / felizes</span></div>
-          <div class="vocab-item"><span class="vocab-en">in the car</span><span class="vocab-pt">no carro</span></div>
-          <div class="vocab-item"><span class="vocab-en">students</span><span class="vocab-pt">estudantes</span></div>
-          <div class="vocab-item"><span class="vocab-en">doctor</span><span class="vocab-pt">médico / médica</span></div>
-          <div class="vocab-item"><span class="vocab-en">tired</span><span class="vocab-pt">cansado(s)</span></div>
-          <div class="vocab-item"><span class="vocab-en">here</span><span class="vocab-pt">aqui</span></div>
-          <div class="vocab-item"><span class="vocab-en">cat</span><span class="vocab-pt">gato</span></div>
-          <div class="vocab-item"><span class="vocab-en">sister</span><span class="vocab-pt">irmã</span></div>
-          <div class="vocab-item"><span class="vocab-en">at school</span><span class="vocab-pt">na escola</span></div>
-          <div class="vocab-item"><span class="vocab-en">hungry</span><span class="vocab-pt">com fome</span></div>
-          <div class="vocab-item"><span class="vocab-en">busy</span><span class="vocab-pt">ocupado(a)</span></div>
-          <div class="vocab-item"><span class="vocab-en">hot</span><span class="vocab-pt">quente / calor</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal de Vocabulário Auxiliar - Parte B -->
-  <div id="vocab-modal-b" class="modal-overlay" onclick="closeVocabModalOnOutsideClick(event, 'b')">
-    <div class="modal-container">
-      <div class="modal-header">
-        <h3>Vocabulário Auxiliar · Passado e Futuro</h3>
-        <button class="modal-close-btn" onclick="toggleVocabModal('b')">&times;</button>
-      </div>
-      <div class="modal-body">
-        <div class="vocab-grid">
-          <div class="vocab-item"><span class="vocab-en">yesterday</span><span class="vocab-pt">ontem</span></div>
-          <div class="vocab-item"><span class="vocab-en">at home</span><span class="vocab-pt">em casa</span></div>
-          <div class="vocab-item"><span class="vocab-en">doctors</span><span class="vocab-pt">médicos</span></div>
-          <div class="vocab-item"><span class="vocab-en">close friends</span><span class="vocab-pt">amigos íntimos / muito amigos</span></div>
-          <div class="vocab-item"><span class="vocab-en">tomorrow</span><span class="vocab-pt">amanhã</span></div>
-          <div class="vocab-item"><span class="vocab-en">sunny</span><span class="vocab-pt">ensolarado</span></div>
-          <div class="vocab-item"><span class="vocab-en">great teacher</span><span class="vocab-pt">ótimo professor(a)</span></div>
-          <div class="vocab-item"><span class="vocab-en">very happy</span><span class="vocab-pt">muito felizes</span></div>
-          <div class="vocab-item"><span class="vocab-en">late</span><span class="vocab-pt">atrasado(s)</span></div>
-          <div class="vocab-item"><span class="vocab-en">beautiful day</span><span class="vocab-pt">dia lindo / dia bonito</span></div>
-          <div class="vocab-item"><span class="vocab-en">at work</span><span class="vocab-pt">no trabalho</span></div>
-          <div class="vocab-item"><span class="vocab-en">best student</span><span class="vocab-pt">melhor estudante / aluno</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <script>
     const orderA = [
       'a_qr', 'ab_qr',
@@ -1266,7 +984,6 @@
       'a4', 'ab4',
       'a5', 'ab5',
       'a6', 'ab6',
-      'a7', 'ab7',
       'a8'
     ];
     const orderB = [
@@ -1277,7 +994,6 @@
       'b4', 'bb4',
       'b5', 'bb5',
       'b6', 'bb6',
-      'b7', 'bb7',
       'b8'
     ];
     
@@ -1285,10 +1001,6 @@
     let curIndex = 0;
 
     function goHome() {
-      // Close all modals
-      document.getElementById('vocab-modal-a').classList.remove('active');
-      document.getElementById('vocab-modal-b').classList.remove('active');
-      
       currentSequence = null;
       curIndex = 0;
       
@@ -1363,12 +1075,8 @@
     }
 
     document.addEventListener('keydown', e => {
-      // Don't navigate with arrow keys if on Home screen or inside modals
+      // Don't navigate with arrow keys if on Home screen
       if (!currentSequence) return;
-      if (document.getElementById('vocab-modal-a').classList.contains('active') || 
-          document.getElementById('vocab-modal-b').classList.contains('active')) {
-        return;
-      }
       
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'Spacebar') {
         e.preventDefault();
@@ -1380,39 +1088,7 @@
       }
     });
 
-    function switchHwTab(tabName) {
-      // Restrict selections to the current active slide
-      const prefix = tabName.startsWith('a-') ? 'a' : 'b';
-      const slide = document.getElementById(`${prefix}7`);
-      if (!slide) return;
-      
-      slide.querySelectorAll('.hw-tab-btn').forEach(btn => btn.classList.remove('active'));
-      slide.querySelectorAll('.hw-content-pane').forEach(pane => pane.classList.remove('active'));
 
-      const eventBtn = event ? event.currentTarget : null;
-      if (eventBtn) {
-        eventBtn.classList.add('active');
-      } else {
-        const btn = Array.from(slide.querySelectorAll('.hw-tab-btn')).find(b => b.getAttribute('onclick').includes(tabName));
-        if (btn) btn.classList.add('active');
-      }
-
-      const pane = document.getElementById(`hw-${tabName}`);
-      if (pane) pane.classList.add('active');
-    }
-
-    function toggleVocabModal(prefix) {
-      const modal = document.getElementById(`vocab-modal-${prefix}`);
-      if (modal) {
-        modal.classList.toggle('active');
-      }
-    }
-
-    function closeVocabModalOnOutsideClick(e, prefix) {
-      if (e.target.id === `vocab-modal-${prefix}`) {
-        toggleVocabModal(prefix);
-      }
-    }
 
     // URL Query Parameter handling for direct scanned entries
     window.addEventListener('DOMContentLoaded', () => {
