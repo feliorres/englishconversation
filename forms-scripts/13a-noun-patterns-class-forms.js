@@ -1,77 +1,169 @@
 function criarFormularioNounPatternsClass() {
   var form = FormApp.create('13a - Aula: Padrões de Substantivos em Inglês');
   form.setIsQuiz(true);
-  form.setDescription('Responda com atenção às questões de padrões de substantivos (singular/plural) praticadas em classe.');
+  form.setDescription('Revisão das Aulas 10 a 13 (Parte A). Responda com atenção às questões de pronomes retos, verbo to be no presente, artigos e padrões de substantivos.');
 
-  // --- Complete as Lacunas (Questões 1 a 10) ---
-  var dadosLacunas = [
-    { q: '1. We have three ______ in our garden. (caixas - plural de box)', options: ['boxs', 'boxes', 'boxies'], correct: 'boxes', voc: 'have = temos | garden = jardim' },
-    { q: '2. Those ______ are playing football. (crianças - plural de child)', options: ['childs', 'children', 'childrens'], correct: 'children', voc: 'Those = aqueles/aquelas | are playing = estão jogando' },
-    { q: '3. I bought two ______ yesterday. (facas - plural de knife)', options: ['knifes', 'knives', 'knifees'], correct: 'knives', voc: 'bought = comprei | yesterday = ontem' },
-    { q: '4. The ______ are sleeping. (bebês - plural de baby)', options: ['babies', 'babys', 'babyes'], correct: 'babies', voc: 'are sleeping = estão dormindo' },
-    { q: '5. They have two ______ cars. (vermelhos - concordância do adjetivo)', options: ['reds', 'red', 'red\'s'], correct: 'red', voc: 'have = têm | cars = carros' },
-    { q: '6. Look at that ______! It is very beautiful. (casa - gênero neutro para objetos)', options: ['house', 'houses', 'housies'], correct: 'house', voc: 'Look at = olhe para | beautiful = linda' },
-    { q: '7. Five ______ are waiting for the bus. (homens - plural de man)', options: ['mans', 'men', 'mens'], correct: 'men', voc: 'are waiting for = estão esperando por | bus = ônibus' },
-    { q: '8. She has many ______ at school. (amigos - plural de friend)', options: ['friends', 'friendes', 'friend\'s'], correct: 'friends', voc: 'has = tem | many = muitos/muitas | at school = na escola' },
-    { q: '9. We need to wash our ______. (pés - plural de foot)', options: ['foots', 'feets', 'feet'], correct: 'feet', voc: 'need to wash = precisamos lavar' },
-    { q: '10. Several ______ are talking in the room. (mulheres - plural de woman)', options: ['womans', 'women', 'womens'], correct: 'women', voc: 'Several = várias | are talking = estão conversando | room = sala' }
+  var dadosQuestoes = [
+    {
+      q: '1. "The babies are sleeping." Traduza a palavra "babies".',
+      options: ['bebê', 'bebês', 'crianças'],
+      correct: 'bebês',
+      voc: 'babies = bebês | are sleeping = estão dormindo'
+    },
+    {
+      q: '2. "We have three boxes." Traduza a palavra "boxes".',
+      options: ['caixa', 'caixas', 'tomates'],
+      correct: 'caixas',
+      voc: 'have = temos | three = três | boxes = caixas'
+    },
+    {
+      q: '3. "Those children are playing." Traduza a palavra "children".',
+      options: ['criança', 'filhos', 'crianças'],
+      correct: 'crianças',
+      voc: 'Those = aqueles/aquelas | children = crianças | playing = jogando'
+    },
+    {
+      q: '4. "I bought two knives." Traduza a palavra "knives".',
+      options: ['facas', 'faca', 'garfos'],
+      correct: 'facas',
+      voc: 'bought = comprei | two = duas | knives = facas'
+    },
+    {
+      q: '5. "They have two red cars." Traduza a palavra "red".',
+      options: ['vermelho', 'vermelhos', 'verde'],
+      correct: 'vermelhos',
+      voc: 'have = têm | red = vermelho/vermelhos | cars = carros'
+    },
+    {
+      q: '6. "She has many friends." Traduza a palavra "friends".',
+      options: ['amigo', 'amigos', 'família'],
+      correct: 'amigos',
+      voc: 'has = tem | many = muitos/muitas | friends = amigos'
+    },
+    {
+      q: '7. "We need to wash our feet." Traduza a palavra "feet".',
+      options: ['pé', 'pés', 'mãos'],
+      correct: 'pés',
+      voc: 'need to wash = precisamos lavar | feet = pés'
+    },
+    {
+      q: '8. "Several women are talking." Traduza a palavra "women".',
+      options: ['mulher', 'mulheres', 'homens'],
+      correct: 'mulheres',
+      voc: 'Several = várias | women = mulheres | talking = conversando'
+    },
+    {
+      q: '9. "He cleaned his teeth today." Traduza a palavra "teeth".',
+      options: ['dente', 'dentes', 'boca'],
+      correct: 'dentes',
+      voc: 'cleaned = limpou | teeth = dentes | today = hoje'
+    },
+    {
+      q: '10. "The mice ran away." Traduza a palavra "mice".',
+      options: ['rato', 'ratos', 'gatos'],
+      correct: 'ratos',
+      voc: 'mice = ratos | ran away = fugiram'
+    },
+    {
+      q: '11. "I am a teacher." Traduza a palavra "I".',
+      options: ['Eu', 'Você', 'Ele'],
+      correct: 'Eu',
+      voc: 'I = eu | am = sou/estou | teacher = professor(a)'
+    },
+    {
+      q: '12. "He is a good student." Traduza a palavra "He".',
+      options: ['Ele', 'Ela', 'Eu'],
+      correct: 'Ele',
+      voc: 'is = é | good = bom | student = estudante'
+    },
+    {
+      q: '13. "She is a doctor." Traduza a palavra "She".',
+      options: ['Ela', 'Ele', 'Nós'],
+      correct: 'Ela',
+      voc: 'is = é | doctor = médica/médico'
+    },
+    {
+      q: '14. "They are happy." Traduza a palavra "They".',
+      options: ['Eles/Elas', 'Nós', 'Vocês'],
+      correct: 'Eles/Elas',
+      voc: 'are = são/estão | happy = felizes'
+    },
+    {
+      q: '15. "We are friends." Traduza a palavra "We".',
+      options: ['Nós', 'Eles', 'Eu'],
+      correct: 'Nós',
+      voc: 'are = somos | friends = amigos'
+    },
+    {
+      q: '16. "It is a beautiful day." Traduza a palavra "It".',
+      options: ['Ele/Ela (neutro)', 'Eu', 'Você'],
+      correct: 'Ele/Ela (neutro)',
+      voc: 'is = é | beautiful = bonito | day = dia'
+    },
+    {
+      q: '17. "You are very nice." Traduza a palavra "You".',
+      options: ['Você/Vocês', 'Eu', 'Eles'],
+      correct: 'Você/Vocês',
+      voc: 'are = é/são/está/estão | very = muito | nice = legal/simpático(a)'
+    },
+    {
+      q: '18. "I am in the classroom." Traduza a palavra "am".',
+      options: ['sou/estou', 'é/está', 'são/estão'],
+      correct: 'sou/estou',
+      voc: 'I = eu | in the = na | classroom = sala de aula'
+    },
+    {
+      q: '19. "She is very tall." Traduza a palavra "is".',
+      options: ['é/está', 'sou/estou', 'são/estão'],
+      correct: 'é/está',
+      voc: 'She = ela | very = muito | tall = alta'
+    },
+    {
+      q: '20. "They are at school." Traduza a palavra "are".',
+      options: ['são/estão', 'sou/estou', 'é/está'],
+      correct: 'são/estão',
+      voc: 'They = eles/elas | at school = na escola'
+    },
+    {
+      q: '21. "The city has two libraries." Traduza a palavra "libraries".',
+      options: ['biblioteca', 'bibliotecas', 'livrarias'],
+      correct: 'bibliotecas',
+      voc: 'city = cidade | has = tem | libraries = bibliotecas'
+    },
+    {
+      q: '22. "This is an easy exercise." Traduza a palavra "an".',
+      options: ['um/uma', 'uns/umas', 'o/a'],
+      correct: 'um/uma',
+      voc: 'This = este | is = é | easy = fácil | exercise = exercício | an = um/uma (antes de som de vogal)'
+    },
+    {
+      q: '23. "A cat is on the street." Traduza a palavra "A".',
+      options: ['Um/Uma', 'Uns/Umas', 'O/A'],
+      correct: 'Um/Uma',
+      voc: 'cat = gato | is = está | on the street = na rua | A = um/uma (antes de som de consoante)'
+    },
+    {
+      q: '24. "The sun is hot today." Traduza a palavra "The".',
+      options: ['O/A/Os/As', 'Um/Uma', 'Uns/Umas'],
+      correct: 'O/A/Os/As',
+      voc: 'sun = sol | is = está | hot = quente | today = hoje | The = artigo definido'
+    },
+    {
+      q: '25. "We saw some yellow birds." Traduza a palavra "yellow".',
+      options: ['amarelo', 'amarelos', 'azul'],
+      correct: 'amarelos',
+      voc: 'saw = vimos | yellow = amarelo/amarelos | birds = pássaros'
+    }
   ];
 
-  dadosLacunas.forEach(function (itemData) {
+  dadosQuestoes.forEach(function (itemData, index) {
     var item = form.addMultipleChoiceItem();
-    item.setTitle(itemData.q)
+    item.setTitle((index + 1) + '. ' + itemData.q.replace(/^\d+\.\s*/, ''))
       .setHelpText('Selecione a opção correta. | Vocabulário auxiliar → ' + itemData.voc)
       .setRequired(true);
 
     var choices = itemData.options.map(function (opt) {
       return item.createChoice(opt, opt === itemData.correct);
-    });
-    item.setChoices(choices);
-  });
-
-  // --- Tradução PT para EN (Questões 11 a 18) ---
-  var dadosTraducaoPT_EN = [
-    { num: '11', pt: 'Eu tenho dois carros novos.', options: ['I have two new cars.', 'I have two news cars.', 'I have two new car.'], correct: 'I have two new cars.', voc: 'Eu tenho = I have | Dois = two | Novos = new | Carros = cars' },
-    { num: '12', pt: 'Ela é uma pessoa legal.', options: ['She is a nice person.', 'She is an nice person.', 'She is a nice people.'], correct: 'She is a nice person.', voc: 'Ela é = She is | Uma = a | Pessoa = person | Legal = nice' },
-    { num: '13', pt: 'Onde estão os meus livros pretos?', options: ['Where are my black books?', 'Where are my blacks books?', 'Where is my black books?'], correct: 'Where are my black books?', voc: 'Onde estão = Where are | Meus = my | Pretos = black | Livros = books' },
-    { num: '14', pt: 'Eles são homens felizes.', options: ['They are happy men.', 'They are happys mans.', 'They are happy mans.'], correct: 'They are happy men.', voc: 'Eles são = They are | Felizes = happy | Homens = men' },
-    { num: '15', pt: 'As chaves estão em cima da mesa.', options: ['The keys are on the table.', 'The key is on the table.', 'A keys are on the table.'], correct: 'The keys are on the table.', voc: 'Chaves = keys | Estão = are | Em cima da = on the | Mesa = table' },
-    { num: '16', pt: 'Duas mulheres estão trabalhando.', options: ['Two women are working.', 'Two womans are working.', 'Two women is working.'], correct: 'Two women are working.', voc: 'Duas = two | Mulheres = women | Estão trabalhando = are working' },
-    { num: '17', pt: 'Eu vejo três cães pequenos.', options: ['I see three small dogs.', 'I see three smalls dogs.', 'I see three small dog.'], correct: 'I see three small dogs.', voc: 'Eu vejo = I see | Três = three | Pequenos = small | Cães = dogs' },
-    { num: '18', pt: 'O sol é muito quente.', options: ['The sun is very hot.', 'A sun is very hot.', 'Sun is very hot.'], correct: 'The sun is very hot.', voc: 'O sol = The sun | É muito = is very | Quente = hot' }
-  ];
-
-  dadosTraducaoPT_EN.forEach(function (itemData) {
-    var item = form.addMultipleChoiceItem();
-    item.setTitle(itemData.num + '. Traduza para o Inglês: "' + itemData.pt + '"')
-      .setHelpText('Selecione a tradução correta. | Vocabulário auxiliar → ' + itemData.voc)
-      .setRequired(true);
-
-    var choices = itemData.options.map(function (opt) {
-      return item.createChoice(opt, opt.trim() === itemData.correct.trim());
-    });
-    item.setChoices(choices);
-  });
-
-  // --- Tradução EN para PT (Questões 19 a 25) ---
-  var dadosTraducaoEN_PT = [
-    { num: '19', en: 'The children are eating green apples.', options: ['As crianças estão comendo maçãs verdes.', 'A criança está comendo maçã verde.', 'As crianças estão comendo maçãs verde.'], correct: 'As crianças estão comendo maçãs verdes.', voc: 'Children = crianças | Eating = comendo | Green = verdes | Apples = maçãs' },
-    { num: '20', en: 'Those houses are very old.', options: ['Aquelas casas são muito antigas.', 'Aquela casa é muito antiga.', 'Aquelas casas são muito antiga.'], correct: 'Aquelas casas são muito antigas.', voc: 'Those = aquelas | Houses = casas | Very = muito | Old = antigas' },
-    { num: '21', en: 'The people are waiting outside.', options: ['As pessoas estão esperando lá fora.', 'A pessoa está esperando lá fora.', 'O povo está esperando dentro.'], correct: 'As pessoas estão esperando lá fora.', voc: 'People = pessoas | Waiting = esperando | Outside = lá fora' },
-    { num: '22', en: 'It is an interesting book.', options: ['É um livro interessante.', 'Ela é um livro interessante.', 'Eles são livros interessantes.'], correct: 'É um livro interessante.', voc: 'Interesting = interessante | Book = livro' },
-    { num: '23', en: 'My sister has white teeth.', options: ['Minha irmã tem dentes brancos.', 'Minha irmã tem dente branco.', 'Meus irmãos têm dentes brancos.'], correct: 'Minha irmã tem dentes brancos.', voc: 'Sister = irmã | Has = tem | White = brancos | Teeth = dentes' },
-    { num: '24', en: 'We bought some blue boxes.', options: ['Nós compramos algumas caixas azuis.', 'Nós compramos algumas caixa azul.', 'Nós compramos alguns azuis caixas.'], correct: 'Nós compramos algumas caixas azuis.', voc: 'Bought = compramos | Some = algumas | Blue = azuis | Boxes = caixas' },
-    { num: '25', en: 'He has two big feet.', options: ['Ele tem dois pés grandes.', 'Ele tem dois pé grande.', 'Ele tem duas mãos grandes.'], correct: 'Ele tem dois pés grandes.', voc: 'Has = tem | Two = dois | Big = grandes | Feet = pés' }
-  ];
-
-  dadosTraducaoEN_PT.forEach(function (itemData) {
-    var item = form.addMultipleChoiceItem();
-    item.setTitle(itemData.num + '. Traduza para o Português: "' + itemData.en + '"')
-      .setHelpText('Selecione a tradução correta. | Vocabulário auxiliar → ' + itemData.voc)
-      .setRequired(true);
-
-    var choices = itemData.options.map(function (opt) {
-      return item.createChoice(opt, opt.trim() === itemData.correct.trim());
     });
     item.setChoices(choices);
   });

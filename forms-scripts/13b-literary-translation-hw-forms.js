@@ -1,77 +1,169 @@
 function criarFormularioLiteraryTranslationHW() {
   var form = FormApp.create('13b - Lição de Casa: Tradução Literária (The Happy Prince)');
   form.setIsQuiz(true);
-  form.setDescription('Responda com atenção. Todas as questões são obrigatórias e baseadas no vocabulário de "The Happy Prince".');
+  form.setDescription('Revisão das Aulas 10 a 13 (Vocabulário e Gramática - Lição de Casa). Responda com atenção às questões de tradução de palavras dentro de frases.');
 
-  // --- Complete as Lacunas / Vocabulário (Questões 1 a 10) ---
-  var dadosLacunas = [
-    { q: '1. Complete: In the city, there is a tall ______ with a statue. (coluna)', options: ['column', 'colum', 'collumn'], correct: 'column', voc: 'city = cidade | tall = alta | statue = estátua' },
-    { q: '2. What is the meaning of "fine gold" in the text?', options: ['Pure or high-quality gold', 'Very thin gold wire', 'Cheap gold paint'], correct: 'Pure or high-quality gold', voc: 'pure = puro | high-quality = alta qualidade' },
-    { q: '3. Complete: The wind blew the dry ______ away. (folhas - plural de leaf)', options: ['leafs', 'leaves', 'leafes'], correct: 'leaves', voc: 'wind = vento | blew away = soprou para longe | dry = secas' },
-    { q: '4. Complete: Her blue eyes looked like beautiful ______. (safiras)', options: ['sapphires', 'rubies', 'pearls'], correct: 'sapphires', voc: 'looked like = pareciam com | blue eyes = olhos azuis' },
-    { q: '5. Complete: The red ______ in the necklace is worth a fortune. (rubi)', options: ['ruby', 'sapphire', 'diamond'], correct: 'ruby', voc: 'necklace = colar | worth = vale | fortune = fortuna' },
-    { q: '6. Complete: He gripped the ______ of the ancient sword. (punho/cabo)', options: ['hilt', 'blade', 'sheath'], correct: 'hilt', voc: 'gripped = segurou firme | ancient = antiga | sword = espada' },
-    { q: '7. Complete: A bird was flying high ______ the mountains. (acima de / no alto de)', options: ['above', 'under', 'inside'], correct: 'above', voc: 'flying = voando | mountains = montanhas' },
-    { q: '8. Which word is a synonym for "covered in gold" (coberto de ouro)?', options: ['gilded', 'glowed', 'stood'], correct: 'gilded', voc: 'synonym = sinônimo | covered = coberto' },
-    { q: '9. Complete: The candle ______ in the dark room. (brilhou/reluziu)', options: ['glowed', 'gilded', 'stood'], correct: 'glowed', voc: 'candle = vela | dark room = sala escura' },
-    { q: '10. Complete: The golden ______ are shining in the sun. (folhas - plural)', options: ['leaves', 'leafs', 'leaf'], correct: 'leaves', voc: 'golden = de ouro | shining = brilhando | sun = sol' }
+  var dadosQuestoes = [
+    {
+      q: '1. "The bird flew above the tall column." Traduza a palavra "column".',
+      options: ['coluna', 'ponte', 'estátua'],
+      correct: 'coluna',
+      voc: 'flew = voou | tall = alta'
+    },
+    {
+      q: '2. "She has a ring made of fine gold." Traduza a palavra "fine".',
+      options: ['fino', 'grosso', 'barato'],
+      correct: 'fino',
+      voc: 'ring = anel | made of = feito de | gold = ouro'
+    },
+    {
+      q: '3. "The wind blew the dry leaves away." Traduza a palavra "leaves".',
+      options: ['folhas', 'flores', 'sementes'],
+      correct: 'folhas',
+      voc: 'wind = vento | blew away = soprou para longe | dry = secas'
+    },
+    {
+      q: '4. "Her blue eyes looked like beautiful sapphires." Traduza a palavra "sapphires".',
+      options: ['safiras', 'rubis', 'esmeraldas'],
+      correct: 'safiras',
+      voc: 'looked like = pareciam com | beautiful = lindas'
+    },
+    {
+      q: '5. "The red ruby in the necklace is expensive." Traduza a palavra "ruby".',
+      options: ['rubi', 'diamante', 'pérola'],
+      correct: 'rubi',
+      voc: 'necklace = colar | expensive = caro'
+    },
+    {
+      q: '6. "He gripped the hilt of the sword." Traduza a palavra "hilt".',
+      options: ['punho', 'lâmina', 'bainha'],
+      correct: 'punho',
+      voc: 'gripped = segurou firme | sword = espada'
+    },
+    {
+      q: '7. "A swallow was flying high above the town." Traduza a palavra "above".',
+      options: ['acima de', 'abaixo de', 'dentro de'],
+      correct: 'acima de',
+      voc: 'swallow = andorinha | flying = voando | town = cidade'
+    },
+    {
+      q: '8. "The gold statue was gilded all over." Traduza a palavra "gilded".',
+      options: ['folheada', 'pintada', 'quebrada'],
+      correct: 'folheada',
+      voc: 'all over = toda/por toda parte'
+    },
+    {
+      q: '9. "The candle glowed in the dark room." Traduza a palavra "glowed".',
+      options: ['brilhava', 'apagou', 'queimou'],
+      correct: 'brilhava',
+      voc: 'candle = vela | dark room = quarto escuro'
+    },
+    {
+      q: '10. "The Happy Prince helped the poor people." Traduza a palavra "people".',
+      options: ['pessoas', 'pessoa', 'animais'],
+      correct: 'pessoas',
+      voc: 'helped = ajudou | poor = pobres'
+    },
+    {
+      q: '11. "He will be a hero tomorrow." Traduza a palavra "will be".',
+      options: ['será', 'foi', 'é'],
+      correct: 'será',
+      voc: 'hero = herói | tomorrow = amanhã'
+    },
+    {
+      q: '12. "They were not happy with the decision." Traduza a palavra "were".',
+      options: ['estavam', 'estão', 'estarão'],
+      correct: 'estavam',
+      voc: 'decision = decisão'
+    },
+    {
+      q: '13. "Is this book yours or mine?" Traduza a palavra "yours".',
+      options: ['seu', 'meu', 'dela'],
+      correct: 'seu',
+      voc: 'book = livro | mine = meu'
+    },
+    {
+      q: '14. "She gave us some gold leaves." Traduza a palavra "us".',
+      options: ['nos', 'me', 'lhes'],
+      correct: 'nos',
+      voc: 'gave = deu | some = algumas | leaves = folhas'
+    },
+    {
+      q: '15. "They will be here soon." Traduza a palavra "will be".',
+      options: ['estarão', 'estão', 'estavam'],
+      correct: 'estarão',
+      voc: 'here = aqui | soon = em breve'
+    },
+    {
+      q: '16. "I was very busy yesterday." Traduza a palavra "was".',
+      options: ['estava', 'estou', 'estarei'],
+      correct: 'estava',
+      voc: 'busy = ocupado | yesterday = ontem'
+    },
+    {
+      q: '17. "The prince has many precious gems." Traduza a palavra "many".',
+      options: ['muitas', 'poucas', 'algumas'],
+      correct: 'muitas',
+      voc: 'precious = preciosas | gems = gemas/pedras preciosas'
+    },
+    {
+      q: '18. "Do we have much gold?" Traduza a palavra "much".',
+      options: ['muito', 'pouco', 'algum'],
+      correct: 'muito',
+      voc: 'gold = ouro'
+    },
+    {
+      q: '19. "The little bird lived on the column." Traduza a palavra "column".',
+      options: ['coluna', 'telhado', 'árvore'],
+      correct: 'coluna',
+      voc: 'little bird = pequeno pássaro | lived = vivia'
+    },
+    {
+      q: '20. "This statue is theirs." Traduza a palavra "theirs".',
+      options: ['deles', 'nosso', 'seu'],
+      correct: 'deles',
+      voc: 'statue = estátua | theirs = deles/delas'
+    },
+    {
+      q: '21. "Where are the children playing?" Traduza a palavra "children".',
+      options: ['crianças', 'criança', 'adultos'],
+      correct: 'crianças',
+      voc: 'Where are = onde estão | playing = jogando/brincando'
+    },
+    {
+      q: '22. "I need an hour to finish." Traduza a palavra "an".',
+      options: ['uma', 'um', 'umas'],
+      correct: 'uma',
+      voc: 'need = preciso de | hour = hora | finish = terminar'
+    },
+    {
+      q: '23. "Those rubies are very bright." Traduza a palavra "those".',
+      options: ['aqueles', 'estes', 'esse'],
+      correct: 'aqueles',
+      voc: 'rubies = rubis | very bright = muito brilhantes'
+    },
+    {
+      q: '24. "He bought a red sword-hilt." Traduza a palavra "sword-hilt".',
+      options: ['punho de espada', 'bainha de espada', 'lâmina de espada'],
+      correct: 'punho de espada',
+      voc: 'bought = comprou'
+    },
+    {
+      q: '25. "The leaves of the trees are beautiful." Traduza a palavra "leaves".',
+      options: ['folhas', 'flores', 'raízes'],
+      correct: 'folhas',
+      voc: 'trees = árvores | beautiful = bonitas'
+    }
   ];
 
-  dadosLacunas.forEach(function (itemData) {
+  dadosQuestoes.forEach(function (itemData, index) {
     var item = form.addMultipleChoiceItem();
-    item.setTitle(itemData.q)
+    item.setTitle((index + 1) + '. ' + itemData.q.replace(/^\d+\.\s*/, ''))
       .setHelpText('Selecione a opção correta. | Vocabulário auxiliar → ' + itemData.voc)
       .setRequired(true);
 
     var choices = itemData.options.map(function (opt) {
       return item.createChoice(opt, opt === itemData.correct);
-    });
-    item.setChoices(choices);
-  });
-
-  // --- Tradução PT para EN (Questões 11 a 18) ---
-  var dadosTraducaoPT_EN = [
-    { num: '11', pt: 'O pássaro voou acima da coluna.', options: ['The bird flew above the column.', 'The bird flies above the column.', 'The bird flew under the column.'], correct: 'The bird flew above the column.', voc: 'Pássaro = bird | Voou = flew | Acima da = above the | Coluna = column' },
-    { num: '12', pt: 'Ela comprou um anel de safira brilhante.', options: ['She bought a bright sapphire ring.', 'She bought a brights sapphires ring.', 'She buy a bright sapphire ring.'], correct: 'She bought a bright sapphire ring.', voc: 'Comprou = bought | Anel = ring | Safira = sapphire | Brilhante = bright' },
-    { num: '13', pt: 'O punho da espada era feito de ouro.', options: ['The sword-hilt was made of gold.', 'The sword-hilt is made of gold.', 'The sword blade was made of gold.'], correct: 'The sword-hilt was made of gold.', voc: 'Punho da espada = sword-hilt | Era feito de = was made of | Ouro = gold' },
-    { num: '14', pt: 'Várias folhas caíram no chão.', options: ['Several leaves fell on the ground.', 'Several leafs fell on the ground.', 'Several leave fell on the ground.'], correct: 'Several leaves fell on the ground.', voc: 'Várias = several | Folhas = leaves | Caíram = fell | Chão = ground' },
-    { num: '15', pt: 'O grande rubi vermelho é muito caro.', options: ['The large red ruby is very expensive.', 'The large red ruby was very expensive.', 'A big red ruby are very expensive.'], correct: 'The large red ruby is very expensive.', voc: 'Grande = large | Vermelho = red | Rubi = ruby | Caro = expensive' },
-    { num: '16', pt: 'A estátua de ouro brilhava no sol.', options: ['The gold statue glowed in the sun.', 'The gold statue gild in the sun.', 'The gold statue stands in the sun.'], correct: 'The gold statue glowed in the sun.', voc: 'Estátua de ouro = gold statue | Brilhava = glowed | No sol = in the sun' },
-    { num: '17', pt: 'Nós moramos em uma cidade grande.', options: ['We live in a large city.', 'We live in a large column.', 'We lives in a large city.'], correct: 'We live in a large city.', voc: 'Moramos = live | Em uma = in a | Grande = large | Cidade = city' },
-    { num: '18', pt: 'O Príncipe Feliz tinha um bom coração.', options: ['The Happy Prince had a good heart.', 'The Happy Prince has a good heart.', 'A Happy Prince had a good heart.'], correct: 'The Happy Prince had a good heart.', voc: 'Príncipe Feliz = Happy Prince | Tinha = had | Bom coração = good heart' }
-  ];
-
-  dadosTraducaoPT_EN.forEach(function (itemData) {
-    var item = form.addMultipleChoiceItem();
-    item.setTitle(itemData.num + '. Traduza para o Inglês: "' + itemData.pt + '"')
-      .setHelpText('Selecione a tradução correta. | Vocabulário auxiliar → ' + itemData.voc)
-      .setRequired(true);
-
-    var choices = itemData.options.map(function (opt) {
-      return item.createChoice(opt, opt.trim().replace('.', '') === itemData.correct.trim().replace('.', ''));
-    });
-    item.setChoices(choices);
-  });
-
-  // --- Tradução EN para PT (Questões 19 a 25) ---
-  var dadosTraducaoEN_PT = [
-    { num: '19', en: 'A bird flew high above the city.', options: ['Um pássaro voou no alto da cidade.', 'Um pássaro voou debaixo da cidade.', 'Os pássaros voaram no alto da cidade.'], correct: 'Um pássaro voou no alto da cidade.', voc: 'Bird = pássaro | Flew = voou | High above = no alto de | City = cidade' },
-    { num: '20', en: 'The ring was made of fine gold.', options: ['O anel era feito de ouro fino.', 'O anel é feito de ouro fino.', 'A aliança foi feita de prata fina.'], correct: 'O anel era feito de ouro fino.', voc: 'Ring = anel | Was made of = era feito de | Fine gold = ouro fino' },
-    { num: '21', en: 'She has two beautiful rubies.', options: ['Ela tem dois rubis lindos.', 'Ela tem duas safiras lindas.', 'Ela tinha dois rubis lindos.'], correct: 'Ela tem dois rubis lindos.', voc: 'Has = tem | Beautiful = lindos | Rubies = rubis' },
-    { num: '22', en: 'The sword-hilt was decorated with sapphires.', options: ['O punho da espada estava decorado com safiras.', 'A lâmina da espada estava decorada com safiras.', 'O cabo da espada é decorado com rubis.'], correct: 'O punho da espada estava decorado com safiras.', voc: 'Sword-hilt = punho da espada | Decorated = decorado | Sapphires = safiras' },
-    { num: '23', en: 'Green leaves are growing on the trees.', options: ['Folhas verdes estão crescendo nas árvores.', 'Folhas verdes crescem na árvore.', 'Uma folha verde está crescendo na árvore.'], correct: 'Folhas verdes estão crescendo nas árvores.', voc: 'Green = verdes | Leaves = folhas | Growing = crescendo | Trees = árvores' },
-    { num: '24', en: 'They stood near the ancient column.', options: ['Eles ficaram de pé perto da coluna antiga.', 'Eles subiram na coluna antiga.', 'Eles olharam para a coluna antiga.'], correct: 'Eles ficaram de pé perto da coluna antiga.', voc: 'Stood = ficaram de pé / ergueram-se | Near = perto de | Ancient = antiga | Column = coluna' },
-    { num: '25', en: 'The statue was gilded with thin gold.', options: ['A estátua era folheada com ouro fino.', 'A estátua foi pintada com tinta dourada.', 'O monumento era feito de ouro puro.'], correct: 'A estátua era folheada com ouro fino.', voc: 'Statue = estátua | Gilded = folheada | Thin gold = ouro fino/fino' }
-  ];
-
-  dadosTraducaoEN_PT.forEach(function (itemData) {
-    var item = form.addMultipleChoiceItem();
-    item.setTitle(itemData.num + '. Traduza para o Português: "' + itemData.en + '"')
-      .setHelpText('Selecione a tradução correta. | Vocabulário auxiliar → ' + itemData.voc)
-      .setRequired(true);
-
-    var choices = itemData.options.map(function (opt) {
-      return item.createChoice(opt, opt.trim() === itemData.correct.trim());
     });
     item.setChoices(choices);
   });
