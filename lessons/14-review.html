@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 14 — Review &amp; Assessment</title>
+  <meta name="description" content="Lesson 14 Review Forms - Level A and Level B assessments for English Conversation.">
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #FAF6F0;
+      --cream-card: #FFFFFF;
+      --cream-mid: #EDE7DA;
+      --ink: #1C1A17;
+      --ink-soft: #4A4640;
+      --ink-faint: #8C867D;
+      --accent-a: #2E5A88;
+      --accent-a-hover: #1E3D5F;
+      --accent-b: #883A2E;
+      --accent-b-hover: #5F251E;
+      --gold: #C5A059;
+      --rule: #D4CCC0;
+      --serif: 'Forum', Georgia, serif;
+      --sans: 'Inter', sans-serif;
+      --shadow-sm: 0 4px 12px rgba(28, 26, 23, 0.05);
+      --shadow-md: 0 12px 32px rgba(28, 26, 23, 0.08);
+      --shadow-lg: 0 20px 40px rgba(28, 26, 23, 0.12);
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: var(--sans);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      position: relative;
+    }
+
+    /* Ambient background texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at 50% 20%, rgba(197, 160, 89, 0.08) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 80%, rgba(46, 90, 136, 0.05) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 860px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .top-nav {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      margin-bottom: 32px;
+    }
+
+    .back-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 30px;
+      background: var(--cream-card);
+      border: 1px solid var(--rule);
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .back-button:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+      transform: translateX(-4px);
+    }
+
+    .header-badge {
+      font-family: var(--sans);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--gold);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 400;
+      line-height: 1.15;
+      color: var(--ink);
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      font-size: 1.1rem;
+      color: var(--ink-soft);
+      max-width: 580px;
+      line-height: 1.6;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: var(--gold);
+      margin: 0 auto 28px;
+      border-radius: 2px;
+      opacity: 0.6;
+    }
+
+    /* Buttons / Cards Grid */
+    .forms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+      width: 100%;
+    }
+
+    .form-card {
+      position: relative;
+      background: var(--cream-card);
+      border-radius: 20px;
+      padding: 36px 32px;
+      border: 1px solid var(--rule);
+      text-decoration: none;
+      color: var(--ink);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      text-align: left;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+    }
+
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      transition: height 0.3s ease;
+    }
+
+    .form-card.level-a::before {
+      background: linear-gradient(90deg, #2E5A88, #4A80B4);
+    }
+
+    .form-card.level-b::before {
+      background: linear-gradient(90deg, #883A2E, #B45244);
+    }
+
+    .form-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: rgba(28, 26, 23, 0.2);
+    }
+
+    .form-card:hover::before {
+      height: 8px;
+    }
+
+    .card-badge {
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .level-a .card-badge {
+      background: rgba(46, 90, 136, 0.1);
+      color: var(--accent-a);
+    }
+
+    .level-b .card-badge {
+      background: rgba(136, 58, 46, 0.1);
+      color: var(--accent-b);
+    }
+
+    .card-title {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      color: var(--ink);
+    }
+
+    .card-description {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-bottom: 32px;
+      flex-grow: 1;
+    }
+
+    .card-button-label {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .level-a .card-button-label {
+      background: var(--accent-a);
+      color: #FFFFFF;
+    }
+
+    .level-a:hover .card-button-label {
+      background: var(--accent-a-hover);
+    }
+
+    .level-b .card-button-label {
+      background: var(--accent-b);
+      color: #FFFFFF;
+    }
+
+    .level-b:hover .card-button-label {
+      background: var(--accent-b-hover);
+    }
+
+    .arrow-icon {
+      font-size: 1.2rem;
+      transition: transform 0.3s ease;
+    }
+
+    .form-card:hover .arrow-icon {
+      transform: translateX(6px);
+    }
+
+    footer {
+      margin-top: 60px;
+      font-size: 0.85rem;
+      color: var(--ink-faint);
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 24px 16px;
+      }
+      .forms-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-card {
+        padding: 28px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="top-nav">
+      <a href="../index.html" class="back-button">
+        <span>←</span> Voltar para Lições
+      </a>
+    </div>
+
+    <div class="header-badge">Lesson 14</div>
+    <h1>Review &amp; Assessment</h1>
+    <div class="divider"></div>
+    <p class="subtitle">Selecione o seu nível abaixo para abrir e responder ao formulário de revisão.</p>
+
+    <div class="forms-grid">
+      <!-- Form Level A -->
+      <a href="https://forms.gle/woScaE2JjrRoqnjT8" target="_blank" rel="noopener noreferrer" class="form-card level-a">
+        <span class="card-badge">Level A</span>
+        <h2 class="card-title">Form Level A</h2>
+        <p class="card-description">Formulário de avaliação e revisão para estudantes do Nível A (A1 / A2).</p>
+        <div class="card-button-label">
+          <span>Abrir Form Level A</span>
+          <span class="arrow-icon">→</span>
+        </div>
+      </a>
+
+      <!-- Form Level B -->
+      <a href="https://forms.gle/FvShTKAo3dCchdjj7" target="_blank" rel="noopener noreferrer" class="form-card level-b">
+        <span class="card-badge">Level B</span>
+        <h2 class="card-title">Form Level B</h2>
+        <p class="card-description">Formulário de avaliação e revisão para estudantes do Nível B (A2 / B1).</p>
+        <div class="card-button-label">
+          <span>Abrir Form Level B</span>
+          <span class="arrow-icon">→</span>
+        </div>
+      </a>
+    </div>
+
+    <footer>
+      English Conversation Lessons — Lesson 14 Review
+    </footer>
+  </div>
+
+</body>
+</html>
