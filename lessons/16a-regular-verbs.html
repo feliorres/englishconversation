@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 16A — Verbos Regulares Frequentes no Present Simple</title>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-mid: #EDE7DA;
+      --ink: #1C1A17;
+      --ink-soft: #4A4640;
+      --ink-faint: #9A948C;
+      --accent: #2E2B27;
+      --rule: #D4CCC0;
+      --highlight: #A84A32;
+      --highlight-secondary: #3B6960;
+      --serif: 'Forum', Georgia, serif;
+      --sans: 'Inter', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      overflow: hidden;
+    }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 2.5rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      text-align: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .label {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 3.2rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 2rem;
+      color: var(--highlight);
+      margin-bottom: 1.2rem;
+    }
+
+    p {
+      font-size: 1.15rem;
+      color: var(--ink-soft);
+      line-height: 1.5;
+      max-width: 850px;
+      margin-bottom: 1rem;
+    }
+
+    .table-container {
+      width: 100%;
+      max-width: 900px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      padding: 10px 14px;
+      text-align: center;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    th {
+      background: var(--accent);
+      color: var(--cream);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:nth-child(even) {
+      background: var(--cream-mid);
+    }
+
+    .highlight-3rd {
+      color: var(--highlight);
+      font-weight: 700;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 3rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+
+    button {
+      background: var(--accent);
+      color: var(--cream);
+      border: none;
+      padding: 0.65rem 1.3rem;
+      border-radius: 4px;
+      font-family: var(--sans);
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--highlight);
+    }
+
+    .counter {
+      position: fixed;
+      bottom: 1.5rem;
+      left: 3rem;
+      font-size: 0.95rem;
+      color: var(--ink-faint);
+    }
+
+    .btn-form {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--highlight-secondary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+
+    .btn-hw {
+      background: var(--highlight);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="deck">
+
+    <!-- Slide 1: Título -->
+    <div class="slide active">
+      <div class="label">Lesson 16A</div>
+      <h1>Verbos Regulares Frequentes no Present Simple</h1>
+      <p>Aprenda a conjugar os verbos mais comuns do dia a dia e a regra de acréscimo do "-s" na 3ª pessoa do singular (He / She / It).</p>
+    </div>
+
+    <!-- Slide 2: Acesso aos Formulários (Padrão do Workflow) -->
+    <div class="slide">
+      <div class="label">Formulários da Aula</div>
+      <div style="display: flex; gap: 40px; justify-content: center; align-items: flex-start; margin-top: 10px; flex-wrap: wrap;">
+        <!-- Card Aula -->
+        <div style="background: white; padding: 24px; border-radius: 12px; box-shadow: 0 8px 30px rgba(28, 26, 23, 0.08); text-align: center; width: 260px;">
+          <div style="font-family: var(--sans); font-size: 14px; color: var(--highlight-secondary); font-weight: 600; margin-bottom: 16px; text-transform: uppercase;">Formulário de Aula</div>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=1c1a17&bgcolor=ffffff&data=https://docs.google.com/forms/d/1V7EyaA4dR8yU1EQu-amnwr4dCk1Qhat3dp1SOLnMSTs/edit" alt="QR Code Aula" style="width: 180px; height: 180px; display: block; margin: 0 auto 12px;">
+          <a href="https://docs.google.com/forms/d/1V7EyaA4dR8yU1EQu-amnwr4dCk1Qhat3dp1SOLnMSTs/edit" target="_blank" class="btn-form">Acessar Formulário</a>
+        </div>
+        <!-- Card Lição de Casa -->
+        <div style="background: white; padding: 24px; border-radius: 12px; box-shadow: 0 8px 30px rgba(28, 26, 23, 0.08); text-align: center; width: 260px;">
+          <div style="font-family: var(--sans); font-size: 14px; color: var(--highlight); font-weight: 600; margin-bottom: 16px; text-transform: uppercase;">Lição de Casa (HW)</div>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=1c1a17&bgcolor=ffffff&data=https://docs.google.com/forms/d/1v6O7BaWVF490d1nzGvIM2cH4JeNzs0euRtrQv4jNrMI/edit" alt="QR Code HW" style="width: 180px; height: 180px; display: block; margin: 0 auto 12px;">
+          <a href="https://docs.google.com/forms/d/1v6O7BaWVF490d1nzGvIM2cH4JeNzs0euRtrQv4jNrMI/edit" target="_blank" class="btn-form btn-hw">Acessar Lição de Casa</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Tabela de Conjugação de Verbos Regulares -->
+    <div class="slide">
+      <h2>Tabela de Conjugação de Verbos Regulares</h2>
+      <p>Observe que para <strong>He, She e It</strong>, adicionamos a letra <span class="highlight-3rd">-s</span> ao final do verbo.</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Pronome</th>
+              <th>To Like (Gostar)</th>
+              <th>To Work (Trabalhar)</th>
+              <th>To Live (Morar)</th>
+              <th>To Need (Precisar)</th>
+              <th>To Help (Ajudar)</th>
+              <th>To Call (Ligar)</th>
+              <th>To Play (Jogar)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>I</strong></td>
+              <td>like</td>
+              <td>work</td>
+              <td>live</td>
+              <td>need</td>
+              <td>help</td>
+              <td>call</td>
+              <td>play</td>
+            </tr>
+            <tr>
+              <td><strong>You</strong></td>
+              <td>like</td>
+              <td>work</td>
+              <td>live</td>
+              <td>need</td>
+              <td>help</td>
+              <td>call</td>
+              <td>play</td>
+            </tr>
+            <tr style="background: #FDF2F0;">
+              <td><strong>He</strong></td>
+              <td class="highlight-3rd">likes</td>
+              <td class="highlight-3rd">works</td>
+              <td class="highlight-3rd">lives</td>
+              <td class="highlight-3rd">needs</td>
+              <td class="highlight-3rd">helps</td>
+              <td class="highlight-3rd">calls</td>
+              <td class="highlight-3rd">plays</td>
+            </tr>
+            <tr style="background: #FDF2F0;">
+              <td><strong>She</strong></td>
+              <td class="highlight-3rd">likes</td>
+              <td class="highlight-3rd">works</td>
+              <td class="highlight-3rd">lives</td>
+              <td class="highlight-3rd">needs</td>
+              <td class="highlight-3rd">helps</td>
+              <td class="highlight-3rd">calls</td>
+              <td class="highlight-3rd">plays</td>
+            </tr>
+            <tr style="background: #FDF2F0;">
+              <td><strong>It</strong></td>
+              <td class="highlight-3rd">likes</td>
+              <td class="highlight-3rd">works</td>
+              <td class="highlight-3rd">lives</td>
+              <td class="highlight-3rd">needs</td>
+              <td class="highlight-3rd">helps</td>
+              <td class="highlight-3rd">calls</td>
+              <td class="highlight-3rd">plays</td>
+            </tr>
+            <tr>
+              <td><strong>We</strong></td>
+              <td>like</td>
+              <td>work</td>
+              <td>live</td>
+              <td>need</td>
+              <td>help</td>
+              <td>call</td>
+              <td>play</td>
+            </tr>
+            <tr>
+              <td><strong>You</strong></td>
+              <td>like</td>
+              <td>work</td>
+              <td>live</td>
+              <td>need</td>
+              <td>help</td>
+              <td>call</td>
+              <td>play</td>
+            </tr>
+            <tr>
+              <td><strong>They</strong></td>
+              <td>like</td>
+              <td>work</td>
+              <td>live</td>
+              <td>need</td>
+              <td>help</td>
+              <td>call</td>
+              <td>play</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Slide 4: Exemplos Práticos -->
+    <div class="slide">
+      <h2>Exemplos de Frases</h2>
+      <div style="background: var(--cream-mid); border: 1px solid var(--rule); border-radius: 8px; padding: 1.5rem; text-align: left; max-width: 800px; width: 100%;">
+        <ul style="list-style: none; font-size: 1.1rem; line-height: 1.8;">
+          <li>🔹 I <span class="highlight-3rd">work</span> at a hospital. <em>(Eu trabalho em um hospital.)</em></li>
+          <li>🔹 She <span class="highlight-3rd">works</span> at a hospital. <em>(Ela trabalha em um hospital.)</em></li>
+          <li>🔹 We <span class="highlight-3rd">need</span> water. <em>(Nós precisamos de água.)</em></li>
+          <li>🔹 He <span class="highlight-3rd">needs</span> a new car. <em>(Ele precisa de um carro novo.)</em></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="counter" id="counter">Slide 1 de 4</div>
+
+  <div class="controls">
+    <button id="prevBtn">Anterior</button>
+    <button id="nextBtn">Próximo</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      counter.textContent = `Slide ${index + 1} de ${slides.length}`;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    });
+  </script>
+</body>
+
+</html>

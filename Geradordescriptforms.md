@@ -209,3 +209,12 @@ function criarFormularioInglesDissertativo() {
   Logger.log('Formulário criado com sucesso! URL de edição: ' + form.getEditUrl());
 
 }
+
+---
+
+### Execução Automática no Google Drive via API (Python):
+Após salvar o arquivo `.js` na pasta `forms-scripts/`, o assistente deve executar automaticamente o comando abaixo no terminal para criar o formulário no Google Drive e retornar os links de edição e resposta ao usuário:
+
+```bash
+python3 create_form_api.py forms-scripts/[nome-do-script].js
+```

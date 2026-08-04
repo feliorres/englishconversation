@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson 15A — Posição e Invariabilidade dos Adjetivos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Forum&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-mid: #EDE7DA;
+      --ink: #1C1A17;
+      --ink-soft: #4A4640;
+      --ink-faint: #9A948C;
+      --accent: #2E2B27;
+      --rule: #D4CCC0;
+      --highlight: #A84A32;
+      --highlight-secondary: #3B6960;
+      --serif: 'Forum', Georgia, serif;
+      --sans: 'Inter', sans-serif;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--sans);
+      overflow: hidden;
+    }
+
+    .deck {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      padding: 3rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      text-align: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .label {
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      color: var(--ink);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: 2.2rem;
+      color: var(--highlight);
+      margin-bottom: 1.5rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 1rem;
+    }
+
+    .box {
+      background: var(--cream-mid);
+      border: 1px solid var(--rule);
+      border-radius: 8px;
+      padding: 1.5rem 2rem;
+      margin: 1.5rem 0;
+      max-width: 850px;
+      text-align: left;
+      width: 100%;
+    }
+
+    .example-list {
+      list-style: none;
+      font-size: 1.15rem;
+      color: var(--ink);
+    }
+
+    .example-list li {
+      margin-bottom: 0.8rem;
+    }
+
+    .highlight-word {
+      color: var(--highlight);
+      font-weight: 600;
+    }
+
+    .controls {
+      position: fixed;
+      bottom: 2rem;
+      right: 3rem;
+      display: flex;
+      gap: 1rem;
+      z-index: 10;
+    }
+
+    button {
+      background: var(--accent);
+      color: var(--cream);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 4px;
+      font-family: var(--sans);
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--highlight);
+    }
+
+    .counter {
+      position: fixed;
+      bottom: 2rem;
+      left: 3rem;
+      font-size: 1rem;
+      color: var(--ink-faint);
+    }
+
+    .btn-form {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--highlight-secondary);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 14px;
+      margin-top: 10px;
+      transition: background 0.2s;
+    }
+
+    .btn-form:hover {
+      background: var(--ink);
+    }
+
+    .btn-hw {
+      background: var(--highlight);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="deck">
+
+    <!-- Slide 1: Título -->
+    <div class="slide active">
+      <div class="label">Lesson 15A</div>
+      <h1>Posição e Invariabilidade dos Adjetivos</h1>
+      <p>Aprenda a posição correta dos adjetivos antes do substantivo e por que eles nunca mudam no plural em inglês.</p>
+    </div>
+
+    <!-- Slide 2: Acesso aos Formulários (Antes do Conteúdo) -->
+    <div class="slide">
+      <div class="label">Formulários da Aula</div>
+      <div style="display: flex; gap: 40px; justify-content: center; align-items: flex-start; margin-top: 10px; flex-wrap: wrap;">
+        <!-- Card Aula -->
+        <div style="background: white; padding: 24px; border-radius: 12px; box-shadow: 0 8px 30px rgba(28, 26, 23, 0.08); text-align: center; width: 260px;">
+          <div style="font-family: var(--sans); font-size: 14px; color: var(--highlight-secondary); font-weight: 600; margin-bottom: 16px; text-transform: uppercase;">Formulário de Aula</div>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=1c1a17&bgcolor=ffffff&data=https://docs.google.com/forms/d/1bzjJ-mkRqOoPpW-LknTMOcYIPgp1FMF36W-fdeXTcwU/edit" alt="QR Code Aula" style="width: 180px; height: 180px; display: block; margin: 0 auto 12px;">
+          <a href="https://docs.google.com/forms/d/1bzjJ-mkRqOoPpW-LknTMOcYIPgp1FMF36W-fdeXTcwU/edit" target="_blank" class="btn-form">Acessar Formulário</a>
+        </div>
+        <!-- Card Lição de Casa -->
+        <div style="background: white; padding: 24px; border-radius: 12px; box-shadow: 0 8px 30px rgba(28, 26, 23, 0.08); text-align: center; width: 260px;">
+          <div style="font-family: var(--sans); font-size: 14px; color: var(--highlight); font-weight: 600; margin-bottom: 16px; text-transform: uppercase;">Lição de Casa (HW)</div>
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&color=1c1a17&bgcolor=ffffff&data=https://docs.google.com/forms/d/1JdaUW_FU0s-XeehhEw92xP3rdiVZDMnCf2H-1h0mTyA/edit" alt="QR Code HW" style="width: 180px; height: 180px; display: block; margin: 0 auto 12px;">
+          <a href="https://docs.google.com/forms/d/1JdaUW_FU0s-XeehhEw92xP3rdiVZDMnCf2H-1h0mTyA/edit" target="_blank" class="btn-form btn-hw">Acessar Lição de Casa</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Slide 3: Posição do Adjetivo -->
+    <div class="slide">
+      <h2>1. Posição do Adjetivo (Antes do Substantivo)</h2>
+      <p>Em inglês, o adjetivo (qualidade/característica) vem <strong>SEMPRE ANTES</strong> do nome que ele descreve.</p>
+      <div class="box">
+        <ul class="example-list">
+          <li>✔ I have a <span class="highlight-word">red</span> car. <em>(Eu tenho um carro vermelho.)</em></li>
+          <li>✔ It is a <span class="highlight-word">big</span> city. <em>(É uma cidade grande.)</em></li>
+          <li>✖ <em>Não diga: "car red" ou "city big".</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 4: Invariabilidade -->
+    <div class="slide">
+      <h2>2. Invariabilidade dos Adjetivos</h2>
+      <p>Diferente do português, os adjetivos em inglês <strong>NUNCA vão para o plural</strong> e não mudam de gênero.</p>
+      <div class="box">
+        <ul class="example-list">
+          <li>✔ They are <span class="highlight-word">good</span> students. <em>(Eles são bons estudantes.)</em></li>
+          <li>✔ She buys <span class="highlight-word">expensive</span> shoes. <em>(Ela compra sapatos caros.)</em></li>
+          <li>✖ <em>Jamais adicione "s" ao adjetivo: "goods students" ou "expensives shoes".</em></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Slide 5: Adjetivos após verbo To Be -->
+    <div class="slide">
+      <h2>3. Adjetivos após o Verbo To Be</h2>
+      <p>Quando o adjetivo descreve o sujeito após um verbo de ligação (como o verb To Be), ele fica após o verbo.</p>
+      <div class="box">
+        <ul class="example-list">
+          <li>✔ The coffee is <span class="highlight-word">hot</span>. <em>(O café está quente.)</em></li>
+          <li>✔ These questions are <span class="highlight-word">easy</span>. <em>(Estas perguntas são fáceis.)</em></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="counter" id="counter">Slide 1 de 5</div>
+
+  <div class="controls">
+    <button id="prevBtn">Anterior</button>
+    <button id="nextBtn">Próximo</button>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('counter');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === index);
+      });
+      counter.textContent = `Slide ${index + 1} de ${slides.length}`;
+    }
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' && currentSlide < slides.length - 1) {
+        currentSlide++;
+        showSlide(currentSlide);
+      } else if (e.key === 'ArrowLeft' && currentSlide > 0) {
+        currentSlide--;
+        showSlide(currentSlide);
+      }
+    });
+  </script>
+</body>
+
+</html>
