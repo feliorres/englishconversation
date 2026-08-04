@@ -1,0 +1,9 @@
+# Credenciais privadas do Google (NUNCA ENVIAR AO GITHUB)
+credentials.json
+token.json
+
+# Arquivos temporários e de ambiente
+__pycache__/
+*.pyc
+_temp_js_parser.js
+.DS_Store
